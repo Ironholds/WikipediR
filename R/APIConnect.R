@@ -84,7 +84,7 @@ ConnectionClass <- setRefClass(Class = "ConnectionClass",
                               )
 
 #API connection function
-APIConnect <- function(language = NULL, project = "wikipedia"){
+APIConnect <- function(language, project = "wikipedia"){
   
   #Error checking
   #Is it a recognised project?
@@ -94,13 +94,6 @@ APIConnect <- function(language = NULL, project = "wikipedia"){
                      "wiktionary","wikibooks")){
     
     stop("The project provided is unrecognised or not supported. See ?APIConnect")
-    
-  }
-  
-  #Was a language code provided?
-  if(is.null(language)){
-    
-    stop("The language provided is unrecognised or not supported. See ?APIConnect")
     
   }
   
