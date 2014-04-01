@@ -36,11 +36,24 @@ ConnectionClass <- setRefClass(Class = "ConnectionClass",
                                  ConTester = function(){
                                    
                                    #Make a get request
-                                   to_dispose <- GET(url = .self$APIURL)
+                                   GetResults <- try(GET(url = .self$APIURL), silent = TRUE)
+                                   
+                                   #If it failed...
+                                   if(class(GetResults) == "try-error"){
+                                     
+                                     #Append the GET warning message
+                                     .self$warnings <- paste(.self$warnings,attr(GetResults,"condition")$message)
+                                     
+                                     #Return FALSE
+                                     return(FALSE)
+                                     
+                                   }
                                      
                                    #If it succeeded return TRUE
                                    return(TRUE)
+                                     
                                    
+                                  
                                  },
                                  
                                  #Wrapper
@@ -102,7 +115,7 @@ APIConnect <- function(language, project = "wikipedia"){
   } else {
     
     #Otherwise scrub and return
-    ConnectObject$warnings <- NULL
+    ConnectObject$warnings <- ""
     return(ConnectObject)
     
   }
