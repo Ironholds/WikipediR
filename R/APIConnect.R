@@ -98,7 +98,8 @@ APIConnect <- function(language, project = "wikipedia"){
   }
   
   #Instantiate ConnectObject
-  ConnectObject <- ConnectionClass$new()
+  ConnectObject <- ConnectionClass$new(language = language,
+                                       project = project)
   
   #Test
   testResults <- ConnectObject$ConstructAndTest()
