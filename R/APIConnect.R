@@ -26,8 +26,8 @@ ConnectionClass <- setRefClass(Class = "ConnectionClass",
                                    }
                                     
                                    #Otherwise, construct the URL and add it to the object. Then return TRUE
-                                   .self$APIURL <- paste(URLComponents$code,.self$project,"org",sep = ".")
-                                   
+                                   .self$APIURL <- paste(URLComponents$code, .self$project, "org", sep = ".")
+                                   .self$APIURL <- paste(.self$APIURL, "/w/api.php", sep = "")
                                    return(TRUE)
                                   
                                  },
@@ -42,18 +42,16 @@ ConnectionClass <- setRefClass(Class = "ConnectionClass",
                                    if(class(GetResults) == "try-error"){
                                      
                                      #Append the GET warning message
-                                     .self$warnings <- paste(.self$warnings,attr(GetResults,"condition")$message)
+                                     .self$warnings <- paste(.self$warnings, attr(GetResults,"condition")$message)
                                      
                                      #Return FALSE
                                      return(FALSE)
                                      
+                                   } else {
+                                     
+                                     #If it succeeded return TRUE
+                                     return(TRUE)
                                    }
-                                     
-                                   #If it succeeded return TRUE
-                                   return(TRUE)
-                                     
-                                   
-                                  
                                  },
                                  
                                  #Wrapper
