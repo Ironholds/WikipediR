@@ -1,9 +1,9 @@
 #API connection constructor and testing class
 ConnectionClass <- setRefClass(Class = "ConnectionClass",
-                               fields = c("APIURL",
-                                          "language",
-                                          "project",
-                                          "warnings"),
+                               fields = list(APIURL = "character",
+                                             language = "character",
+                                             project = "character",
+                                             warnings = "character"),
                                methods = list(
                                  
                                  #Identify and generate the API URL
@@ -25,33 +25,22 @@ ConnectionClass <- setRefClass(Class = "ConnectionClass",
                                      
                                    }
                                     
-                                   #Otherwise, construct the URL and add it to the object.
+                                   #Otherwise, construct the URL and add it to the object. Then return TRUE
                                    .self$APIURL <- paste(URLComponents$code,.self$project,"org",sep = ".")
-                                     
+                                   
+                                   return(TRUE)
+                                  
                                  },
                                  
                                  #Connection tester
                                  ConTester = function(){
                                    
                                    #Make a get request
-                                   GetResults <- try(expr = GET(url = .self$APIURL), silent = TRUE)
+                                   to_dispose <- GET(url = .self$APIURL)
+                                     
+                                   #If it succeeded return TRUE
+                                   return(TRUE)
                                    
-                                   #If it failed...
-                                   if(class(GetResults) == "try-error"){
-                                     
-                                     #Append the GET warning message
-                                     .self$warnings <- paste(.self$warnings,attr(test,"condition")$message)
-                                     
-                                     #Return FALSE
-                                     return(FALSE)
-                                     
-                                   } else {
-                                     
-                                     #If it succeeded return TRUE
-                                     return(TRUE)
-                                     
-                                   }
-                                  
                                  },
                                  
                                  #Wrapper
