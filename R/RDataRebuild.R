@@ -62,5 +62,5 @@ RDataRebuild <- function(){
   wikis$project <- gsub(x = wikis$project, pattern = "wiki$", replacement = "wikipedia")
   
   #Overwrite existing .RData file.
-  save(wikis, file = file.path(path.package("WikipediR"),"Data","wikis.RData"))
+  save(wikis, file = file.path(path.package("WikipediR"),"data","wikis.RData"))
 }
