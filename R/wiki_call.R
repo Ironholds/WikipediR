@@ -9,4 +9,5 @@ wiki_call <- function(URL){
   
   #Parse it and return
   return(wiki_parse(response = response))
+  
 }
