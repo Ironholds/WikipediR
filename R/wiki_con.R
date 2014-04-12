@@ -3,7 +3,7 @@ wiki_con <- function(language, project = c("wikipedia","wikisource","wikiquote",
   
   #Match arguments
   project <- match.arg(project)
-  
+
   #Load in the dataset of possible projects and languages
   data("wikis", package = "WikipediR", envir = environment())
   
