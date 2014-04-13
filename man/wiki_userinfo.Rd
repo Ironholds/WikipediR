@@ -1,6 +1,5 @@
 \name{wiki_userinfo}
 \alias{wiki_userinfo}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Retrieve user information
 }
