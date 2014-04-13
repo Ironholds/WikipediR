@@ -1,1 +1,1 @@
-export(wiki_con,wiki_diff,wiki_pagecats,wiki_userinfo)
+export(wiki_con,wiki_diff,wiki_pagecats,wiki_userinfo,wiki_timestamp)
