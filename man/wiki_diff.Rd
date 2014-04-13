@@ -6,7 +6,7 @@ Generates a "diff" between a pair of revisions
 \description{
 wiki_diff generates a diff between two revisions in a MediaWiki page. This is provided as an XML-parsable blob inside the returned JSON object.}
 \usage{
-  wiki_diff(con, revID, properties = c("ids", "flags", "timestamp",
+  wiki_diff(con, revisions, properties = c("ids", "flags", "timestamp",
                                        "user", "userid", "size",
                                        "sha1", "contentmodel", "comment",
                                        "parsedcomment", "tags", "flagged"),
@@ -25,6 +25,13 @@ wiki_diff generates a diff between two revisions in a MediaWiki page. This is pr
   \item{direction}{
   The direction you want the diff to go in from the revisionID you have provided. Options are "prev" (compare to the previous revision on that page), "next" (compare to the next revision on that page) and "cur" (compare to the current, extant version of the page).
 }
+}
+\section{Warnings}{
+
+MediaWiki's API is deliberately designed to restrict users' ability to make computing-intense requests - such as diff computation. As a result, the API only allows requests for one uncached diff in each request. If you ask for multiple diffs, some uncached and some cached, you will be provided with the cached diffs, one of the uncached diffs, and a warning.
+
+If you're going to be asking for a lot of diffs, some of which may not be cached, it may be more sensible to retrieve the revisions themselves using \code{\link{wiki_revision}} and compute the diffs yourself.
+
 }
 \seealso{
 
