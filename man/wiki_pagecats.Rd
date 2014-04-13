@@ -61,3 +61,4 @@ $query$pages$`42472828`$categories[[1]]$ns
 
 $query$pages$`42472828`$categories[[1]]$title
 [1] "Category:Kidnapping by country"
+}
