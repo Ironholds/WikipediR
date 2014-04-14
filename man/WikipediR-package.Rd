@@ -12,8 +12,8 @@ WikipediR is a wrapper for the MediaWiki API. It is primarily oriented around th
 \tabular{ll}{
 Package: \tab WikipediR\cr
 Type: \tab Package\cr
-Version: \tab 0.2\cr
-Date: \tab 2014-04-12\cr
+Version: \tab 0.4\cr
+Date: \tab 2014-04-13\cr
 License: \tab MIT\cr
 }
 The package aims to include wrappers for most of the 'primary' API read functions in MediaWikiAfter constructing a connection object using wiki_con(), plug this into the function that corresponds to the API functionality you're looking for, whether that be diff generation (wiki_diff()), content retrieval (wiki_revision()) or user information (wiki_user()).

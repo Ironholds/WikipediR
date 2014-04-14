@@ -23,13 +23,11 @@ Things you should not use WikipediR for
 * Querying non-Wikimedia MediaWiki instances. This is totally doable, _iff_ you want to manually modify the output of wiki_con, but will become increasingly more difficult as OAuth integration and other things are introduced. This is a Wikimedia wrapper first and foremost.
 * Teaching a robot how to love.
 
-
 Dependencies
 ======
 * R. Doy.
 * [httr] (http://cran.r-project.org/web/packages/httr/index.html) and its dependencies;
 * [jsonlite] (http://cran.r-project.org/web/packages/jsonlite/index.html) and its dependencies;
-
 
 To-Do
 ======
