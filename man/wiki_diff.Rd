@@ -18,10 +18,10 @@ wiki_diff generates a diff between two revisions in a MediaWiki page. This is pr
 
 }
   \item{revisions}{
-  The revision IDs of each "start" revision
+  The revision IDs of each "start" revision.
 }
   \item{properties}{
-  Properties you're trying to retrieve about that revision, should you want to; options include "ids" (the revision ID of the revision...which is pointless), "flags" (whether the edit was 'minor' or not), "timestamp" (the timestamp of the revision, which can be parsed with \code{\link{wiki_timestamp}}), "user" (the username of the person who made that edit), "userid" (the userID of the person who made the edit), "size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of the revision text), "contentmodel" (the content model of the page, usually "wikitext"), "comment" (the edit summary associated with the revision), "parsedcomment" (the same, but parsed, generating HTML from any wikitext in that comment), "tags" (any tags associated with the edit) and "flagged" (the edit's status under Flagged Revisions)}
+  Properties you're trying to retrieve about that revision, should you want to; options include "ids" (the revision ID of the revision...which is pointless), "flags" (whether the edit was 'minor' or not), "timestamp" (the timestamp of the revision, which can be parsed with \code{\link{wiki_timestamp}}), "user" (the username of the person who made that edit), "userid" (the userID of the person who made the revision), "size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of the revision text), "contentmodel" (the content model of the page, usually "wikitext"), "comment" (the revision summary associated with the revision), "parsedcomment" (the same, but parsed, generating HTML from any wikitext in that comment), "tags" (any tags associated with the revision) and "flagged" (the revision's status under Flagged Revisions)}
   \item{direction}{
   The direction you want the diff to go in from the revisionID you have provided. Options are "prev" (compare to the previous revision on that page), "next" (compare to the next revision on that page) and "cur" (compare to the current, extant version of the page).
 }
@@ -35,7 +35,7 @@ If you're going to be asking for a lot of diffs, some of which may not be cached
 }
 \seealso{
 
-  \code{\link{wiki_con}}, \code{\link{wiki_timestamp}}
+  \code{\link{wiki_con}}
 }
 \examples{
   #Create connector
