@@ -13,15 +13,14 @@ _WikipediR_ is a wrapper around the MediaWiki API, optimised for the Wikimedia F
 
 It is currently in development, although the functionality present (namely diff generation through wiki\_diff, user information retrieval through wiki\_userinfo and page metadata retrieval through wiki\_pagecats) works.
 
-Things you should use WikipediR for
+Limitations
 ======
-* Anything you'd normally use the default MediaWiki API to read from Wikipedia or its sister projects
+WikipediR currently lacks:
+* Support for querying Wikidata;
+* Support for querying Commons or Species;
+* A whole lot of functionality.
 
-Things you should not use WikipediR for
-======
-* Querying Wikidata. Wikidata's API structure is very different from that of MediaWiki in some ways; it will probably be handled in a different package.
-* Querying non-Wikimedia MediaWiki instances. This is totally doable, _iff_ you want to manually modify the output of wiki_con, but will become increasingly more difficult as OAuth integration and other things are introduced. This is a Wikimedia wrapper first and foremost.
-* Teaching a robot how to love.
+With the exception of Wikidata (which will be handled by a different package, because the API works very differently), these issues will be solved in time. If there is a particular feature you want, open an issue here on github: I can't prioritise if I don't know what people are trying to do :).
 
 Dependencies
 ======
