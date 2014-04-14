@@ -1,4 +1,4 @@
-#Check the result of wiki_diff for problems. We can at least warn about them.
+#Check the result of wiki_diff or, for that matter, wiki_revisions, for problems. We can at least warn about them.
 diff_checker <- function(diff_content){
   
   diff_names <- names(unlist(diff_content))
@@ -17,7 +17,7 @@ diff_checker <- function(diff_content){
   if(uncached){
     
     #If so, warn
-    warning("This request contained ",uncached, "uncached revisions; these will not be returned", call. = FALSE)
+    warning("This request contained ",uncached,"uncached revisions; these will not be returned", call. = FALSE)
     
   }
   
