@@ -22,9 +22,9 @@ Whether the intent is to convert them from POSIX to MediaWiki }
 
 #MediaWiki to POSIX
 wiki_timestamp(timestamp = 20140101010101, to_wiki = FALSE)
-[1] "2014-01-01 01:01:01"
+#[1] "2014-01-01 01:01:01"
 
 #POSIX to MediaWiki
 wiki_timestamp(timestamp = "2014-01-01 01:01:01", to_wiki = TRUE)
-[1] "20140101010101"
+#[1] "20140101010101"
 }

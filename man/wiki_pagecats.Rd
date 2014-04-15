@@ -34,31 +34,5 @@ connector <- wiki_con(language = "en", project = "wikipedia")
 
 #Retrieve the categories associated with the article "Kidnapping in the United Kingdom"
 wiki_pagecats(con = connector, pages = "Kidnapping in the United Kingdom", properties = "hidden")
-$query
-$query$normalized
-$query$normalized[[1]]
-$query$normalized[[1]]$from
-[1] "Kidnapping_in_the_United_Kingdom"
 
-$query$normalized[[1]]$to
-[1] "Kidnapping in the United Kingdom"
-
-$query$pages
-$query$pages$`42472828`
-$query$pages$`42472828`$pageid
-[1] 42472828
-
-$query$pages$`42472828`$ns
-[1] 0
-
-$query$pages$`42472828`$title
-[1] "Kidnapping in the United Kingdom"
-
-$query$pages$`42472828`$categories
-$query$pages$`42472828`$categories[[1]]
-$query$pages$`42472828`$categories[[1]]$ns
-[1] 14
-
-$query$pages$`42472828`$categories[[1]]$title
-[1] "Category:Kidnapping by country"
 }

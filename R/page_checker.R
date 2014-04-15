@@ -1,4 +1,4 @@
-page_checker(page_content){
+page_checker <- function(page_content){
   
   page_names <- names(unlist(page_content))
   

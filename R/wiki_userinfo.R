@@ -26,7 +26,7 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
   user_content <- wiki_call(URL = user_url)
   
   #Check
-  user_checker(diff_content = diff_content)
+  user_checker(user_content = user_content)
   
   #Return
   return(user_content)

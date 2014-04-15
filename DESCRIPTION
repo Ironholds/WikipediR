@@ -7,6 +7,6 @@ Author: Oliver Keyes
 Maintainer: Oliver Keyes <okeyes@wikimedia.org>
 Description: WikipediR is a wrapper for the MediaWiki API, aimed particularly at the Wikimedia 'production' wikis, such as Wikipedia
 License: MIT
-Depends: httr, jsonlite
+Depends: httr, jsonlite, methods
 BugReports: https://github.com/Ironholds/WikipediR/issues
 Classification/ACM: J.1
