@@ -7,7 +7,8 @@ Retrieves categories associated with a page
 Retrieves categories associated with a page (or list of pages) on a MediaWiki instance
 }
 \usage{
-wiki_pagecats(con, pages, properties = c("sortkey", "timestamp", "hidden"), limit = 50, show_hidden = FALSE)
+wiki_pagecats(con, pages, properties = c("sortkey", "timestamp", "hidden"),
+              limit = 50, show_hidden = FALSE)
 }
 \arguments{
   \item{con}{

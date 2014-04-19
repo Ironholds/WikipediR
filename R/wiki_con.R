@@ -6,6 +6,7 @@ wiki_con <- function(language, project = c("wikipedia","wikisource","wikiquote",
 
   #Load in the dataset of possible projects and languages
   data("wikis", package = "WikipediR", envir = environment())
+  wikis <- wikis
   
   #Work out what combination is being asked for
   URLComponents <- wikis[wikis$code == language & wikis$project == project,]

@@ -41,6 +41,8 @@ If you're going to be asking for a lot of diffs, some of which may not be cached
   #Create connector
   ih_connector <- wiki_con(language = "en", project = "wikipedia")
   
-  #Ask for a diff between revision 602943163 and the next-dated revision on that page, also retrieving the username of the person who /made/ said revision
-  ih_pagdiff <- wiki_diff(con = ih_connector, revision = 602943163, properties = "user", direction = "next")
+  #Ask for a diff between revision 602943163 and the next-dated revision on that page,
+  #also retrieving the username of the person who /made/ said revision
+  ih_pagdiff <- wiki_diff(con = ih_connector, revision = 602943163,
+                          properties = "user", direction = "next")
 }

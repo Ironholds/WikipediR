@@ -37,6 +37,7 @@ As an extension of the lack of centrality in Wikimedia's infrastructure, \code{r
 ih_connector <- wiki_con(language = "en", project = "wikipedia")
 
 #Query
-ironholds_userinfo <- wiki_userinfo(con = ih_connector, usernames = "Ironholds", properties = c("editcount","gender"))
+ironholds_userinfo <- wiki_userinfo(con = ih_connector, usernames = "Ironholds",
+                                    properties = c("editcount","gender"))
 
 }
