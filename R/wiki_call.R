@@ -13,7 +13,7 @@ wiki_call <- function(URL){
   #Is there an error at the API part?
   if(!is.null(parsed_response$error)){
     
-    stop("The API returned an error, code: ",parsed_response$error$code)
+    stop("The API returned an error, code: ",parsed_response$error$code,"-", parsed_response$error$info)
     
   }
   
