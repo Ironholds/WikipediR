@@ -7,16 +7,16 @@ Connector-generating function for WikipediR
 wiki_con generates a connector object necessary to use the other API calls in WikipediR
 }
 \usage{
-wiki_con(language, project = c("wikipedia", "wikisource", "wikiquote",
-                               "wikinews", "wikibooks", "wikiversity", "wikivoyage"))
+wiki_con(language, project = c("wikipedia", "commons", "wikispecies",
+                               "wikisource", "wikiquote", "wikinews",
+                               "wikibooks", "wikiversity", "wikivoyage"))
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{language}{
 The two or three-letter project language code - for example, en.wikiquote.org has the language code "en"
 }
   \item{project}{
-  The project type - currently accepted types are wikipedia, wikisource, wikiquote, wikinews, wikibooks, wikiversity and wikivoyage.
+  The project type - currently accepted types are wikipedia, wikispecies, commons, wikisource, wikiquote, wikinews, wikibooks, wikiversity and wikivoyage.
   
 }
 }
@@ -25,7 +25,7 @@ wiki_con is designed to generate a connector object that can be passed into the 
 
 The language code and project names provided by the user are checked against an object containing all 'legitimate' permutations of languages and project types - in other words, all Wikipedia wikis that are not private, closed, dead, or otherwise restricted. This list is stored as an .RData file, "wikis", which will be updated as the package is updated. To allow for the likelihood that the active projects change in quantity and variety over time, a function, RDataRebuild, is provided in this package to allow the end user to update the wiki listings whenever they want.
 
-Support for Wikimedia Commons and Wikispecies is not yet provided, although it will be soon; Wikidata support is likely to be provided through a different package entirely, because it has a different API structure.
+Wikidata support is likely to be provided through a different package entirely, because it has a different API structure.
 
 }
 
