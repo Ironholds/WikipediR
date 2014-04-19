@@ -4,7 +4,7 @@
 Retrieves MediaWiki revisions
 }
 \description{
-Retrieves the content of a provided list of revisions from whichever MediaWiki instance you're querying.
+Retrieves the content of a provided list of revisions from whichever MediaWiki instance you're querying. Returns as wikimarkup.
 }
 \usage{
 wiki_revision(con, revisions, properties = c("content", "ids", "flags",
