@@ -1,0 +1,5 @@
+Version 0.5.1
+------------------------------------------------------------------------------
+
+* Format for wiki_revision changed from the (unacceptable-to-API) text/css to x/wikitext.
+* Error handling improved to pass the full error explanation through to the user, in the case of API errors.
