@@ -1,8 +1,8 @@
 #Basic calling function
-wiki_call <- function(URL){
+wiki_call <- function(URL, ...){
   
   #Make a GET request
-  response <- GET(URL)
+  response <- GET(URL, ...)
   
   #Check the validity of the response from a server POV
   wiki_checker(response)
