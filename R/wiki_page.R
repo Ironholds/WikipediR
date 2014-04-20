@@ -11,9 +11,13 @@ wiki_page <- function(con, pages, properties = c("content","ids","flags","timest
   properties <- paste(properties, collapse = "|")
   
   #Construct URL
-  page_url <- paste(con$URL,"&rvcontentformat=text%2Fcss&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")
+  if(grepl("species", con$URL)){
+    page_url <- paste(con$URL,"&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")
+  } else {
+    page_url <- paste(con$URL,"&rvcontentformat=text%2Fcss&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")    
+  }
 
-  #Run
+  #Run  
   page_content <- wiki_call(URL = page_url)
   
   #Check for issues.
