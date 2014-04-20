@@ -10,12 +10,8 @@ wiki_page <- function(con, pages, properties = c("content","ids","flags","timest
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   
-  #Construct URL
-  if(grepl("species", con$URL)){
-    page_url <- paste(con$URL,"&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")
-  } else {
-    page_url <- paste(con$URL,"&rvcontentformat=text%2Fcss&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")    
-  }
+  #Construct query
+  page_url <- paste(con$URL,"&rvcontentformat=text%2Fx-wiki&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")    
 
   #Run  
   page_content <- wiki_call(URL = page_url, curlopts)

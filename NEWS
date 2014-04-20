@@ -1,7 +1,11 @@
+Version 0.6.2
+* Bug fix from Scott Chamberlain around wiki_page, switching the content type over to x-wikitext.
+
 Version 0.6.1
 ------------------------------------------------------------------------------
 
 * Support for Commons and Wikispecies
+* Addition of wiki_recentchanges(), which allows a useR to query the recentchanges feed.
 
 Version 0.5.1
 ------------------------------------------------------------------------------
