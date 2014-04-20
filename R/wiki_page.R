@@ -14,7 +14,7 @@ wiki_page <- function(con, pages, properties = c("content","ids","flags","timest
   page_url <- paste(con$URL,"&rvcontentformat=text%2Fx-wiki&action=query&prop=revisions&rvdir=older&rvprop=",properties,"&titles=",pages, sep = "")    
 
   #Run  
-  page_content <- wiki_call(URL = page_url, curlopts)
+  page_content <- wiki_call(URL = page_url, con$CurlOpts)
   
   #Check for issues.
   page_checker(page_content)

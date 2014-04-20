@@ -19,7 +19,7 @@ wiki_diff <- function(con,
   diff_url <- paste(con$URL,"&action=query&prop=revisions&rvprop=",properties,"&rvdiffto=",direction,"&rvcontentformat=text%2Fcss&revids=",revisions, sep = "")
   
   #Retrieve the content
-  diff_content <- wiki_call(URL = diff_url)
+  diff_content <- wiki_call(URL = diff_url, con$CurlOpts)
   
   #Check
   diff_checker(diff_content = diff_content)

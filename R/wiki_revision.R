@@ -13,7 +13,7 @@ wiki_revision <- function(con, revisions, properties = c("content","ids","flags"
   revision_url <- paste(con$URL,"&rvcontentformat=text%2Fx-wiki&action=query&prop=revisions&rvprop=",properties,"&revids=",revisions, sep = "")
   
   #Run
-  revision_content <- wiki_call(URL = revision_url)
+  revision_content <- wiki_call(URL = revision_url, con$CurlOpts)
   
   #Check for issues. diff_checker works for this
   diff_checker(revision_content)

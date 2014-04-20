@@ -24,7 +24,7 @@ wiki_pagecats <- function(con,
   pagecat_url <- paste(con$URL,"&action=query&prop=categories&clprop=",properties,"&clshow=",show_hidden,"&cllimit=",limit,"&titles=",pages, sep = "")
   
   #Retrieve the content
-  pagecat_content <- wiki_call(URL = pagecat_url, curlopts)
+  pagecat_content <- wiki_call(URL = pagecat_url, con$CurlOpts)
   
   #Check
   pagecat_checker(pagecat_content = pagecat_content)

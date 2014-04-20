@@ -23,7 +23,7 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
   user_url <- paste(con$URL,"&action=query&list=users&usprop=",properties,"&ususers=",usernames,sep = "")
   
   #Retrieve the content
-  user_content <- wiki_call(URL = user_url)
+  user_content <- wiki_call(URL = user_url, con$CurlOpts)
   
   #Check
   user_checker(user_content = user_content)
