@@ -1,11 +1,11 @@
 #Constructor for the connection object
-wiki_con <- function(language, project = c("wikipedia","commons","wikispecies","wikisource","wikiquote","wikinews","wikibooks","wikiversity","wikivoyage")){
+wiki_con <- function(language, project = c("wikipedia","commons","species","wikisource","wikiquote","wikinews","wikibooks","wikiversity","wikivoyage")){
   
   #Match arguments
   project <- match.arg(project)
   
   #Commons and Wikispecies have different URL formats, so those have to be handled in a hinky way.
-  if(project %in% c("commons","wikispecies")){
+  if(project %in% c("commons","species")){
     
     #Create and return an appropriate wiki_conClass object
     return(wiki_conClass$new(URL = paste0("http://",project,".wikimedia.org/w/api.php?format=json")))

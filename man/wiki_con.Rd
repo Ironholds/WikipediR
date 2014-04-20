@@ -7,7 +7,7 @@ Connector-generating function for WikipediR
 wiki_con generates a connector object necessary to use the other API calls in WikipediR
 }
 \usage{
-wiki_con(language, project = c("wikipedia", "commons", "wikispecies",
+wiki_con(language, project = c("wikipedia", "commons", "species",
                                "wikisource", "wikiquote", "wikinews",
                                "wikibooks", "wikiversity", "wikivoyage"))
 }
@@ -16,7 +16,7 @@ wiki_con(language, project = c("wikipedia", "commons", "wikispecies",
 The two or three-letter project language code - for example, en.wikiquote.org has the language code "en"
 }
   \item{project}{
-  The project type - currently accepted types are wikipedia, wikispecies, commons, wikisource, wikiquote, wikinews, wikibooks, wikiversity and wikivoyage.
+  The project type - currently accepted types are wikipedia, species, commons, wikisource, wikiquote, wikinews, wikibooks, wikiversity and wikivoyage.
   
 }
 }
