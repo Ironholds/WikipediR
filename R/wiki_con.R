@@ -1,5 +1,8 @@
 #Constructor for the connection object
-wiki_con <- function(language, project = c("wikipedia","commons","species","wikisource","wikiquote","wikinews","wikibooks","wikiversity","wikivoyage")){
+wiki_con <- function(language, project = c("wikipedia","commons","species",
+                                           "wikisource","wikiquote","wikinews",
+                                           "wikibooks","wikiversity","wikivoyage"),
+                     w_timeout = 5){
   
   #Match arguments
   project <- match.arg(project)
@@ -28,7 +31,8 @@ wiki_con <- function(language, project = c("wikipedia","commons","species","wiki
     } else {
       
       #Otherwise, create an object of wiki_conClass and return it
-      return(wiki_conClass$new(URL = paste0("http://",paste(URLComponents$code,URLComponents$project,"org/w/api.php?format=json", sep = "."))))
+      return(wiki_conClass$new(URL = paste0("http://",paste(URLComponents$code,URLComponents$project,"org/w/api.php?format=json", sep = ".")),
+                               CurlOpts = list("timeout.ms" = w_timeout * 1000)))
       
     }
   }

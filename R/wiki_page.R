@@ -2,7 +2,7 @@
 wiki_page <- function(con, pages, properties = c("content","ids","flags","timestamp",
                                                          "user","userid","size",
                                                          "sha1","contentmodel","comment",
-                                                         "parsedcomment","tags"), curlopts=list()) {
+                                                         "parsedcomment","tags")) {
   
   #Format and standardise pages and properties
   pages <- gsub(x = pages, pattern = " ", replacement = "_")

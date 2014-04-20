@@ -9,7 +9,8 @@ wiki_con generates a connector object necessary to use the other API calls in Wi
 \usage{
 wiki_con(language, project = c("wikipedia", "commons", "species",
                                "wikisource", "wikiquote", "wikinews",
-                               "wikibooks", "wikiversity", "wikivoyage"))
+                               "wikibooks", "wikiversity", "wikivoyage",
+         w_timeout = 5))
 }
 \arguments{
   \item{language}{
@@ -17,8 +18,11 @@ The two or three-letter project language code - for example, en.wikiquote.org ha
 }
   \item{project}{
   The project type - currently accepted types are wikipedia, species, commons, wikisource, wikiquote, wikinews, wikibooks, wikiversity and wikivoyage.
-  
 }
+  \item{w_timeout}{
+  
+  The number of seconds before requests time out. Set to 5 by default.
+  }
 }
 \details{
 wiki_con is designed to generate a connector object that can be passed into the API-wrapping functions to retrieve data. At the moment, it consists almost entirely of a pre-constructed URL; the intent is to have it allow for both OAuth and direct authentication given time, to take advantage of the higher API limits given by being authenticated.
