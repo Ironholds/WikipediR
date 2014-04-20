@@ -2,7 +2,7 @@
 wiki_page <- function(con, pages, properties = c("content","ids","flags","timestamp",
                                                          "user","userid","size",
                                                          "sha1","contentmodel","comment",
-                                                         "parsedcomment","tags")) {
+                                                         "parsedcomment","tags"), curlopts=list()) {
   
   #Format and standardise pages and properties
   pages <- gsub(x = pages, pattern = " ", replacement = "_")
@@ -18,7 +18,7 @@ wiki_page <- function(con, pages, properties = c("content","ids","flags","timest
   }
 
   #Run  
-  page_content <- wiki_call(URL = page_url)
+  page_content <- wiki_call(URL = page_url, curlopts)
   
   #Check for issues.
   page_checker(page_content)

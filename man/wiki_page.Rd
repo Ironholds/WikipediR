@@ -10,7 +10,7 @@ wiki_page retrieves the content and associated metadata from the most recent rev
 wiki_page(con, pages, properties = c("content", "ids", "flags",
                                      "timestamp", "user", "userid",
                                      "size", "sha1", "contentmodel",
-                                     "comment", "parsedcomment", "tags"))
+                                     "comment", "parsedcomment", "tags"), curlopts=list())
 }
 \arguments{
   \item{con}{
@@ -20,7 +20,10 @@ wiki_page(con, pages, properties = c("content", "ids", "flags",
 The page title(s) you care about
 }
   \item{properties}{
-  Properties associated with the most recent revision to the pages you specified. Options include "ids" (the revision ID of the revision), "flags" (whether the revision was 'minor' or not), "timestamp" (the timestamp of the revision, which can be parsed with \code{\link{wiki_timestamp}}), "user" (the username of the person who made that revision), "userid" (the userID of the person who made the revision), "size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of the revision text), "contentmodel" (the content model of the page, usually "wikitext"), "comment" (the revision summary associated with the revision), "parsedcomment" (the same, but parsed, generating HTML from any wikitext in that comment), "tags" (any tags associated with the revision) and "flagged" (the revision's status under Flagged Revisions)}
+  Properties associated with the most recent revision to the pages you specified. Options include "ids" (the revision ID of the revision), "flags" (whether the revision was 'minor' or not), "timestamp" (the timestamp of the revision, which can be parsed with \code{\link{wiki_timestamp}}), "user" (the username of the person who made that revision), "userid" (the userID of the person who made the revision), "size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of the revision text), "contentmodel" (the content model of the page, usually "wikitext"), "comment" (the revision summary associated with the revision), "parsedcomment" (the same, but parsed, generating HTML from any wikitext in that comment), "tags" (any tags associated with the revision) and "flagged" (the revision's status under Flagged Revisions)
+}
+  \item{curlopts}{
+List of curl options passed on to \code{httr::GET}. See \code{getCurlOptionTypes()} in the \code{RCurl} package.}
 }
 
 \seealso{

@@ -2,7 +2,7 @@ wiki_pagecats <- function(con,
                             pages,
                             properties = c("sortkey","timestamp","hidden"),
                             limit = 50,
-                            show_hidden = FALSE){
+                            show_hidden = FALSE, curlopts=list()){
   
   #Normalise and save the various parameters
   pages <- gsub(x = pages, pattern = " ", replacement = "_")
@@ -24,7 +24,7 @@ wiki_pagecats <- function(con,
   pagecat_url <- paste(con$URL,"&action=query&prop=categories&clprop=",properties,"&clshow=",show_hidden,"&cllimit=",limit,"&titles=",pages, sep = "")
   
   #Retrieve the content
-  pagecat_content <- wiki_call(URL = pagecat_url)
+  pagecat_content <- wiki_call(URL = pagecat_url, curlopts)
   
   #Check
   pagecat_checker(pagecat_content = pagecat_content)
