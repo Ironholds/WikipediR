@@ -26,8 +26,8 @@ wiki_pagecats <- function(con,
   #Retrieve the content
   pagecat_content <- wiki_call(URL = pagecat_url, con$CurlOpts)
   
-  #Check
-  pagecat_checker(pagecat_content = pagecat_content)
+  #Check for invalid pageIDs
+  MissingPagesHandler(pagecat_content)
   
   #Return
   return(pagecat_content)

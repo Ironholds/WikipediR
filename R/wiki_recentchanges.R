@@ -5,7 +5,6 @@ wiki_recentchanges <- function(con, properties = c("user","userid","comment",
                                type = c("edit","external","new","log"),
                                tag = NULL, dir = "newer", limit = 50, top = FALSE) {
   
-  if(limit > 50)
   #Format and standardise type and properties
   type <- match.arg(arg = type, several.ok = TRUE)
   type <- paste(type, collapse = "|")
@@ -32,9 +31,6 @@ wiki_recentchanges <- function(con, properties = c("user","userid","comment",
   
   #Query
   rc_content <- wiki_call(URL = rc_url)
-  
-  #Check
-  rc_checker(rc_content)
   
   #Return
   return(rc_content)

@@ -21,8 +21,11 @@ wiki_diff <- function(con,
   #Retrieve the content
   diff_content <- wiki_call(URL = diff_url, con$CurlOpts)
   
-  #Check
-  diff_checker(diff_content = diff_content)
+  #Check for invalid RevIDs
+  InvalidRevIDsHandler(diff_content)
+  
+  #Check for uncached diffs
+  UncachedDiffsHandler(diff_content)
   
   #Return
   return(diff_content)

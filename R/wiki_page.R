@@ -16,8 +16,8 @@ wiki_page <- function(con, pages, properties = c("content","ids","flags","timest
   #Run  
   page_content <- wiki_call(URL = page_url, con$CurlOpts)
   
-  #Check for issues.
-  page_checker(page_content)
+  #Check for missing pages
+  MissingPagesHandler(page_content)
   
   #Return
   return(page_content)

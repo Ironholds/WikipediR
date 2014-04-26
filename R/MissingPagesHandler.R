@@ -1,6 +1,7 @@
-page_checker <- function(page_content){
+#Handler for missing pages - pages requested that the API couldn't confirm existed.
+MissingPagesHandler <- function(parsed_response){
   
-  page_names <- names(unlist(page_content))
+  page_names <- names(unlist(parsed_response))
   
   #Are there returns from missing pages?
   missing_pages <- sum(grepl(x = page_names, pattern = "missing"))
@@ -10,5 +11,8 @@ page_checker <- function(page_content){
     warning("This request contained ",missing_pages," invalid page titles", call. = FALSE)
     
   }
+  
+  #Otherwise, return invisibly
+  return(invisible())
   
 }

@@ -15,8 +15,8 @@ wiki_revision <- function(con, revisions, properties = c("content","ids","flags"
   #Run
   revision_content <- wiki_call(URL = revision_url, con$CurlOpts)
   
-  #Check for issues. diff_checker works for this
-  diff_checker(revision_content)
+  #Check for invalid RevIDs
+  InvalidRevIDsHandler(revision_content)
   
   #Return
   return(revision_content)

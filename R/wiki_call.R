@@ -5,18 +5,14 @@ wiki_call <- function(URL, ...){
   response <- GET(URL, ...)
   
   #Check the validity of the response from a server POV
-  wiki_checker(response)
+  ConnectionErrorHandler(response)
   
   #Parse it
   parsed_response <- wiki_parse(response = response)
   
-  #Is there an error at the API part?
-  if(!is.null(parsed_response$error)){
-    
-    stop("The API returned an error, code: ",parsed_response$error$code,"-", parsed_response$error$info)
-    
-  }
+  #Check for API errors
+  APIErrorHandler(parsed_response)
   
-  #Otherwise, return
+  #Return
   return(parsed_response)
 }
