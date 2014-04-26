@@ -23,7 +23,7 @@ The properties you want to gather for each member of the category. Options are "
 }
 }
 \section{Warnings}{
-Because of the way the API gathers this data, both "the category you asked for doesn't exist" and "the category you asked for exists, but has no members" return in the same way.
+Because of the way MediaWiki stores this data, both "the category you asked for doesn't exist" and "the category you asked for exists, but has no members" return in the same way.
 
 }
 

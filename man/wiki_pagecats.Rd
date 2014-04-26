@@ -8,7 +8,7 @@ Retrieves categories associated with a page (or list of pages) on a MediaWiki in
 }
 \usage{
 wiki_pagecats(con, pages, properties = c("sortkey", "timestamp", "hidden"),
-              limit = 50, show_hidden = FALSE, curlopts=list())
+              limit = 50, show_hidden = FALSE)
 }
 \arguments{
   \item{con}{
@@ -24,10 +24,7 @@ The maximum number of categories you want to retrieve for each page
 }
   \item{show_hidden}{
 Whether or not to include 'hidden' categories in the categories that are retrieved - these are usually associated with the maintenance of Wikipedia and its internal processes.}
-  \item{curlopts}{
-List of curl options passed on to \code{httr::GET}. See \code{getCurlOptionTypes()} in the \code{RCurl} package.}
 }
-
 \seealso{
 \code{\link{wiki_catpages}} for pages in a specified category
 }

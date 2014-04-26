@@ -1,7 +1,7 @@
 Package: WikipediR
 Type: Package
 Title: A MediaWiki API wrapper
-Version: 0.6.3
+Version: 0.7.0
 Date: 2014-04-26
 Author: Oliver Keyes
 Maintainer: Oliver Keyes <okeyes@wikimedia.org>

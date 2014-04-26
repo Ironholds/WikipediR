@@ -2,7 +2,7 @@
 MissingUsersHandler <- function(parsed_response){
   
   #Check for missing values
-  names_to_check <- names(unlist(user_content))
+  names_to_check <- names(unlist(parsed_response))
   
   missing_names <- sum(grepl(x = names_to_check, pattern = "users\\.missing"))
   if(length(missing_names)){

@@ -12,7 +12,7 @@ WikipediR is a wrapper for the MediaWiki API. It is primarily oriented around th
 \tabular{ll}{
 Package: \tab WikipediR\cr
 Type: \tab Package\cr
-Version: \tab 0.6.3\cr
+Version: \tab 0.7.0\cr
 Date: \tab 2014-04-26\cr
 License: \tab MIT\cr
 }

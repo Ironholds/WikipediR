@@ -9,8 +9,8 @@ wiki_con generates a connector object necessary to use the other API calls in Wi
 \usage{
 wiki_con(language, project = c("wikipedia", "commons", "species",
                                "wikisource", "wikiquote", "wikinews",
-                               "wikibooks", "wikiversity", "wikivoyage",
-         w_timeout = 5))
+                               "wikibooks", "wikiversity", "wikivoyage"),
+         w_timeout = 5)
 }
 \arguments{
   \item{language}{
