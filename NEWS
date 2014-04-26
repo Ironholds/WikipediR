@@ -1,3 +1,6 @@
+Version 0.6.3
+* Standardisation and cleanup of error handlers, and the introduction of a single central LimitHandler.
+
 Version 0.6.2
 * Bug fix from Scott Chamberlain around wiki_page, switching the content type over to x-wikitext.
 * Introduction of w_timeout as a field in the connector object; will be extended to other CURL options in time.
