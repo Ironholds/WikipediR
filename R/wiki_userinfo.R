@@ -25,9 +25,10 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
   #Retrieve the content
   user_content <- wiki_call(URL = user_url, con$CurlOpts)
   
-  #Check
-  user_checker(user_content = user_content)
+  #Check for missing users
+  MissingUsersHandler(user_content)
   
   #Return
   return(user_content)
+  
 }
