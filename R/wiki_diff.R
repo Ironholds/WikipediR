@@ -6,15 +6,14 @@ wiki_diff <- function(con,
                                              "tags","flagged"),
                       direction = c("prev","next","cur")){
   
-  
   #Match args
   direction <- match.arg(direction)
   properties <- match.arg(properties, several.ok = TRUE)
   
-  #Save the desired properties and revisions
+  #Save the desired properties and check revisions
   properties <- paste(properties, collapse = "|")
-  revisions <- paste(revisions, collapse = "|")
-  
+  revisions <- LimitHandler(revisions, 50)
+    
   #Construct the URL
   diff_url <- paste(con$URL,"&action=query&prop=revisions&rvprop=",properties,"&rvdiffto=",direction,"&rvcontentformat=text%2Fcss&revids=",revisions, sep = "")
   

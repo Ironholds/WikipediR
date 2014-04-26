@@ -1,9 +1,12 @@
+#Retrieves pages in a particular category, or categories
 wiki_catpages <- function(con, categories, properties = c("title","ids","sortkey","sortkeyprefix","type","timestamp"),
                           type = c("page","subcat","file")){
   
-  #Parse the category titles
-  categories <- gsub(x = categories, pattern = " ", replacement = "_")
+  #Add 'Category'
   categories <- gsub(x = categories, pattern = "^", replacement = "Category:")
+  
+  #Check categories against the limit
+  categories <- LimitHandler(categories, 50)
   
   #Match and standardise properties
   properties <- match.arg(properties, several.ok = TRUE)

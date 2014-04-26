@@ -5,7 +5,6 @@ wiki_page <- function(con, pages, properties = c("content","ids","flags","timest
                                                          "parsedcomment","tags")) {
   
   #Format and standardise pages and properties
-  pages <- gsub(x = pages, pattern = " ", replacement = "_")
   pages <- paste(pages, collapse = "|")
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")

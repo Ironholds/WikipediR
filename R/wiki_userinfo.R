@@ -2,22 +2,12 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
                                                         "rights","editcount","registration",
                                                         "emailable","gender")){
   
-  
   #Match args, and save them
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
-
-  if(length(usernames) > 50){
-    
-    warning("You have provided",length(usernames),"usernames. The MediaWiki API allows for a maximum of 50. Only the first 50 will be used.")
-    
-    usernames <- paste(usernames[1:50], collapse = "|")
-    
-  } else {
-    
-    usernames <- paste(usernames, collapse = "|")
-    
-  }
+  
+  #Check that the number of usernames provided is below the limit.
+  usernames <- LimitHandler(usernames, 50)
   
   #Construct the URL
   user_url <- paste(con$URL,"&action=query&list=users&usprop=",properties,"&ususers=",usernames,sep = "")

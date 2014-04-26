@@ -1,11 +1,7 @@
-wiki_pagecats <- function(con,
-                            pages,
-                            properties = c("sortkey","timestamp","hidden"),
-                            limit = 50,
-                            show_hidden = FALSE, curlopts=list()){
+wiki_pagecats <- function(con, pages, properties = c("sortkey","timestamp","hidden"), limit = 50,
+                          show_hidden = FALSE){
   
   #Normalise and save the various parameters
-  pages <- gsub(x = pages, pattern = " ", replacement = "_")
   pages <- paste(pages, collapse = "|")
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")

@@ -4,10 +4,12 @@ wiki_revision <- function(con, revisions, properties = c("content","ids","flags"
                                                          "sha1","contentmodel","comment",
                                                          "parsedcomment","tags")) {
   
-  #Format and standardise revisions and properties
-  revisions <- paste(revisions, collapse = "|")
+  #Format and standardise properties
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
+  
+  #Check provided revisions against the limit
+  revisions <- LimitHandler(categories, 50)
   
   #Construct URL
   revision_url <- paste(con$URL,"&rvcontentformat=text%2Fx-wiki&action=query&prop=revisions&rvprop=",properties,"&revids=",revisions, sep = "")

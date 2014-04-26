@@ -1,6 +1,9 @@
 #Basic calling function
 wiki_call <- function(URL, ...){
   
+  #Encode URL. I'm amazed none of the ancestor packages do this.
+  URL <- URLencode(URL)
+  
   #Make a GET request
   response <- GET(URL, ...)
   
