@@ -1,5 +1,5 @@
 #Handles limitations on the number of unique values you can pass in.
-LimitHandler(parameters, limit){
+LimitHandler <- function(parameters, limit){
   
   #If there are more parameters than the limit...
   if(length(parameters) > limit){
