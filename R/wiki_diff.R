@@ -15,7 +15,7 @@ wiki_diff <- function(con,
   revisions <- LimitHandler(revisions, 50)
     
   #Construct the URL
-  diff_url <- paste(con$URL,"&action=query&prop=revisions&rvprop=",properties,"&rvdiffto=",direction,"&rvcontentformat=text%2Fcss&revids=",revisions, sep = "")
+  diff_url <- paste(con$URL,"&action=query&prop=revisions&rvprop=",properties,"&rvdiffto=",direction,"&rvcontentformat=text/css&revids=",revisions, sep = "")
   
   #Retrieve the content
   diff_content <- wiki_call(URL = diff_url, con$CurlOpts)
