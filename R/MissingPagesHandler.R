@@ -8,7 +8,7 @@ MissingPagesHandler <- function(parsed_response){
   if(missing_pages){
     
     #If so, warn
-    warning("This request contained ",missing_pages," invalid page titles", call. = FALSE)
+    warning("This request contained ",missing_pages," invalid page title(s)", call. = FALSE)
     
   }
   

@@ -9,7 +9,7 @@ InvalidRevIDsHandler <- function(parsed_response){
   if(bad_revs){
     
     #If so, warn
-    warning("This request contained ",bad_revs," invalid revisionIDs", call. = FALSE)
+    warning("This request contained ",bad_revs," invalid revisionID(s)", call. = FALSE)
     
   }
   
