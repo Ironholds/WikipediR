@@ -5,7 +5,7 @@ MissingUsersHandler <- function(parsed_response){
   names_to_check <- names(unlist(parsed_response))
   
   missing_names <- sum(grepl(x = names_to_check, pattern = "users\\.missing"))
-  if(length(missing_names)){
+  if(missing_names){
     
     warning(missing_names," of the provided usernames did not exist", call. = FALSE)
     

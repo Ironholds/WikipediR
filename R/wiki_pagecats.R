@@ -1,10 +1,12 @@
 wiki_pagecats <- function(con, pages, properties = c("sortkey","timestamp","hidden"), limit = 50,
                           show_hidden = FALSE){
   
-  #Normalise and save the various parameters
-  pages <- paste(pages, collapse = "|")
+  #Normalise and save the properties
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
+  
+  #Check the number of pages in the request
+  pages <- LimitHandler(pages, 50)
   
   if(show_hidden){
     
