@@ -1,3 +1,10 @@
+Version 1.0.0
+------------------------------------------------------------------------------
+* First release version
+* Introduction of wiki_usercontribs, which retrieves recent contributions for a specified username
+* Bugfixes to error handling routines
+* Bugfix to problems around wiki_con, where species or commons users were unable to take advantage of CurlOpts.
+
 Version 0.7.0
 ------------------------------------------------------------------------------
 
