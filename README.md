@@ -3,8 +3,8 @@ WikipediR
 
 An R API wrapper for MediaWiki, optimised for the Wikimedia Foundation MediaWiki instances, such as Wikipedia.
 
-__Author:__ Oliver Keyes<br>
-__License:__ [MIT](http://opensource.org/licenses/MIT)<br>
+__Author:__ Oliver Keyes<br/>
+__License:__ [MIT](http://opensource.org/licenses/MIT)<br/>
 __Status:__ In development
 
 Description
