@@ -1,3 +1,12 @@
+#'@title response parser
+#'
+#'@description
+#'Parses responses from MediaWiki's API.
+#'
+#'@param response the server response.
+#'
+#'@importFrom httr content
+#'@importFrom jsonlite fromJSON
 wiki_parse <- function(response){
   
   #Convert it into a character vector

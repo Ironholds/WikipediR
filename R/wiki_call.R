@@ -1,4 +1,14 @@
-#Basic calling function
+#'@title Basic calling function
+#'
+#'@description
+#'Function used as a component of other package functions that handles the actual
+#'connection to the MediaWiki API
+#'
+#'@param URL the URL to pass to GET. Set by the calling function.
+#'
+#'@param ... any other parameters to pass through to GET.
+#'
+#'@importFrom httr GET
 wiki_call <- function(URL, ...){
   
   #Encode URL. I'm amazed none of the ancestor packages do this.
