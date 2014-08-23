@@ -40,7 +40,7 @@ wiki_usercontribs <- function(con,
   properties <- paste(properties, collapse = "|")
   
   #Check that >1 users wasn't submitted
-  user <- LimitHandler(user, 1)
+  user <- handle_limits(user, 1)
   
   #Construct URL
   contribs_url <- paste(con$URL, "&action=query&list=usercontribs&uclimit=", limit,
@@ -57,7 +57,7 @@ wiki_usercontribs <- function(con,
   contribs_content <- wiki_call(contribs_url, con$CurlOpts)
     
   #Check
-  MissingUsersHandler(contribs_content)
+  handle_missing_users(contribs_content)
   
   #Return
   return(contribs_content)

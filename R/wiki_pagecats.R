@@ -33,7 +33,7 @@ wiki_pagecats <- function(con, pages, properties = c("sortkey","timestamp","hidd
   properties <- paste(properties, collapse = "|")
   
   #Check the number of pages in the request
-  pages <- LimitHandler(pages, 50)
+  pages <- handle_limits(pages, 50)
   
   if(show_hidden){
     
@@ -52,7 +52,7 @@ wiki_pagecats <- function(con, pages, properties = c("sortkey","timestamp","hidd
   pagecat_content <- wiki_call(URL = pagecat_url, con$CurlOpts)
   
   #Check for invalid pageIDs
-  MissingPagesHandler(pagecat_content)
+  handle_missing_pages(pagecat_content)
   
   #Return
   return(pagecat_content)

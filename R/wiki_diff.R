@@ -50,7 +50,7 @@ wiki_diff <- function(con,
   
   #Save the desired properties and check revisions
   properties <- paste(properties, collapse = "|")
-  revisions <- LimitHandler(revisions, 50)
+  revisions <- handle_limits(revisions, 50)
     
   #Construct the URL
   diff_url <- paste(con$URL,"&action=query&prop=revisions&rvprop=",properties,"&rvdiffto=",direction,"&rvcontentformat=text/css&revids=",revisions, sep = "")
@@ -59,10 +59,10 @@ wiki_diff <- function(con,
   diff_content <- wiki_call(URL = diff_url, con$CurlOpts)
   
   #Check for invalid RevIDs
-  InvalidRevIDsHandler(diff_content)
+  handle_invalid_revIDs(diff_content)
   
   #Check for uncached diffs
-  UncachedDiffsHandler(diff_content)
+  handle_uncached_diffs(diff_content)
   
   #Return
   return(diff_content)

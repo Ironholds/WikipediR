@@ -22,7 +22,7 @@
 wiki_page <- function(con, page, properties = c("text","revid")) {
   
   #Format and standardise pages and properties
-  page <- LimitHandler(page, 1)
+  page <- handle_limits(page, 1)
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   

@@ -49,7 +49,7 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
   properties <- paste(properties, collapse = "|")
   
   #Check that the number of usernames provided is below the limit.
-  usernames <- LimitHandler(usernames, 50)
+  usernames <- handle_limits(usernames, 50)
   
   #Construct the URL
   user_url <- paste(con$URL,"&action=query&list=users&usprop=",properties,"&ususers=",usernames,sep = "")
@@ -58,7 +58,7 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
   user_content <- wiki_call(URL = user_url, con$CurlOpts)
   
   #Check for missing users
-  MissingUsersHandler(user_content)
+  handle_missing_users(user_content)
   
   #Return
   return(user_content)
