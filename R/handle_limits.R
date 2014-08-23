@@ -5,8 +5,8 @@ handle_limits <- function(parameters, limit){
   if(length(parameters) > limit){
     
     #Warn
-    warning("This function accepts ", limit, "values; you have provided", length(parameters),
-            ". Only the first", limit, "will be returned", Call. = FALSE)
+    warning("This option accepts ", limit, " values; you have provided ", length(parameters),
+            ". Only the first ", limit, " will be returned.", call. = FALSE)
     
     #Truncate and collapse
     parameters <- paste(parameters[1:limit], collapse = "|")
