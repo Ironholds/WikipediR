@@ -1,5 +1,5 @@
 #Handles uncached diffs
-UncachedDiffsHandler <- function(parsed_response){
+handle_uncached_diffs <- function(parsed_response){
   
   #Identify names
   names <- names(unlist(parsed_response))

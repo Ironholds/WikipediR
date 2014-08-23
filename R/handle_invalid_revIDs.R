@@ -1,5 +1,5 @@
 #Checks for invalid revision IDs, warns if they're found
-InvalidRevIDsHandler <- function(parsed_response){
+handle_invalid_revIDs <- function(parsed_response){
   
   #Retrieve the names
   rev_names <- names(unlist(parsed_response))

@@ -1,5 +1,5 @@
 #Checks for missing users.
-MissingUsersHandler <- function(parsed_response){
+handle_missing_users <- function(parsed_response){
   
   #Check for missing values
   names_to_check <- names(unlist(parsed_response))

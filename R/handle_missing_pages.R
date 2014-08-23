@@ -1,5 +1,5 @@
 #Handler for missing pages - pages requested that the API couldn't confirm existed.
-MissingPagesHandler <- function(parsed_response){
+handle_missing_pages <- function(parsed_response){
   
   page_names <- names(unlist(parsed_response))
   

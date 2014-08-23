@@ -1,5 +1,5 @@
 #Handler for errors/warnings inside the API request
-APIErrorHandler <- function(parsed_response){
+handle_API_errors <- function(parsed_response){
   
   #Check. Is there an error at the API part?
   if(!is.null(parsed_response$error)){
