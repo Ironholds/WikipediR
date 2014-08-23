@@ -1,15 +1,11 @@
 #Checks for invalid revision IDs, warns if they're found
 handle_invalid_revIDs <- function(parsed_response){
   
-  #Retrieve the names
-  rev_names <- names(unlist(parsed_response))
-  
   #Are there invalid revIDs?
-  bad_revs <- sum(grepl(x = rev_names, pattern = "badrevids"))
-  if(bad_revs){
+  if(!is.null(parsed_response$query$badrevids)){
     
     #If so, warn
-    warning("This request contained ",bad_revs," invalid revisionID(s)", call. = FALSE)
+    warning("This request contained ",length(parsed_response$query$badrevids)," invalid revisionID(s)", call. = FALSE)
     
   }
   
