@@ -25,8 +25,8 @@ With the exception of Wikidata (which will be handled by a different package, be
 Dependencies
 ======
 * R. Doy.
-* [httr] (http://cran.r-project.org/web/packages/httr/index.html) and its dependencies, and;
-* [jsonlite] (http://cran.r-project.org/web/packages/jsonlite/index.html) and its dependencies.
+* [httr](http://cran.r-project.org/web/packages/httr/index.html) and its dependencies, and;
+* [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) and its dependencies.
 
 To-Do
 ======
@@ -37,6 +37,7 @@ To-Do
 Thanks and misc
 ======
 Thanks to, in no particular order:
+
 * [Adam](https://github.com/Protonk), for being the person who got me through my baby steps in R, and;
 * [Hadley](https://github.com/hadley), both for httr and his wonderful API wrapper tutorial, which I have liberally stolen from, and;
 * [Toby](https://meta.wikimedia.org/wiki/User:TNegrin_%28WMF%29), for not firing me for working on this.
