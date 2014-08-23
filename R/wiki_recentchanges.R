@@ -70,7 +70,7 @@ wiki_recentchanges <- function(con, properties = c("user","userid","comment",
   }
   
   #Query
-  rc_content <- wiki_call(URL = rc_url)
+  rc_content <- wiki_call(URL = rc_url, con$Config)
   
   #Return
   return(rc_content)

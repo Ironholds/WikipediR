@@ -51,7 +51,7 @@ wiki_catpages <- function(con, categories, properties = c("title","ids","sortkey
   catpage_url <- paste(con$URL,"&action=query&list=categorymembers&cmtitle=",categories,"&cmprop=",properties,"&cmtype=",type, sep = "")
 
   #Query
-  catpage_response <- wiki_call(URL = catpage_url, con$CurlOpts)
+  catpage_response <- wiki_call(URL = catpage_url, con$Config)
   
   #Return
   return(catpage_response)

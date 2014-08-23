@@ -49,7 +49,7 @@ wiki_pagecats <- function(con, pages, properties = c("sortkey","timestamp","hidd
   pagecat_url <- paste(con$URL,"&action=query&prop=categories&clprop=",properties,"&clshow=",show_hidden,"&cllimit=",limit,"&titles=",pages, sep = "")
   
   #Retrieve the content
-  pagecat_content <- wiki_call(URL = pagecat_url, con$CurlOpts)
+  pagecat_content <- wiki_call(URL = pagecat_url, con$Config)
   
   #Check for invalid pageIDs
   handle_missing_pages(pagecat_content)

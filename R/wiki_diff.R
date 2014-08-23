@@ -56,7 +56,7 @@ wiki_diff <- function(con,
   diff_url <- paste(con$URL,"&action=query&prop=revisions&rvprop=",properties,"&rvdiffto=",direction,"&rvcontentformat=text/css&revids=",revisions, sep = "")
   
   #Retrieve the content
-  diff_content <- wiki_call(URL = diff_url, con$CurlOpts)
+  diff_content <- wiki_call(URL = diff_url, con$Config)
   
   #Check for invalid RevIDs
   handle_invalid_revIDs(diff_content)

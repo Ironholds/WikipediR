@@ -30,7 +30,7 @@ wiki_page <- function(con, page, properties = c("text","revid")) {
   page_url <- paste(con$URL, "&contentformat=application/json&action=parse&page=", page, "&prop=", properties, sep = "")
 
   #Run  
-  page_content <- wiki_call(URL = page_url, con$CurlOpts)
+  page_content <- wiki_call(URL = page_url, con$Config)
   
   #Return
   return(page_content)

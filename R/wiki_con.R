@@ -12,6 +12,9 @@
 #'
 #'@param w_timeout The number of seconds before requests time out. Set to 5 by default.
 #'
+#'@param ua custom modifications to the user agent. To obey API etiquette, you should be
+#'including contact information.
+#'
 #'@details
 #'
 #'wiki_con is designed to generate a connector object that can be passed into the
@@ -36,7 +39,8 @@
 wiki_con <- function(language, project = c("wikipedia","commons","species",
                                            "wikisource","wikiquote","wikinews",
                                            "wikibooks","wikiversity","wikivoyage"),
-                     w_timeout = 5){
+                     w_timeout = 5,
+                     ua = NULL){
   
   #Match arguments
   project <- match.arg(project)
@@ -69,10 +73,12 @@ wiki_con <- function(language, project = c("wikipedia","commons","species",
     }
   }
   
-  #Whichever one it turns out to be, construct an object of class wiki_conClass with the resulting URL
-  conObj <- wiki_conClass$new(URL = con_url, CurlOpts = list("timeout.ms" = w_timeout * 1000))
-  
+  #Whatever the result, construct a list serving as the connector object
+  con_object <- list(URL = con_url,
+                     Config = c(user_agent(paste("WikipediR - https://github.com/Ironholds/WikipediR", ua)),
+                                timeout.ms = (w_timeout * 1000)))
+                                       
   #Return
-  return(conObj)
+  return(con_object)
   
 }

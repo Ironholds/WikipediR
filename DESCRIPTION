@@ -10,9 +10,9 @@ Description: WikipediR is a wrapper for the MediaWiki API, aimed particularly
 License: MIT + file LICENSE
 Depends:
     httr,
-    jsonlite,
-    methods
+    jsonlite
 Suggests:
-    XML
+    XML,
+    testthat
 BugReports: https://github.com/Ironholds/WikipediR/issues
-Classification/ACM: J.1
+Classification.ACM: J.1

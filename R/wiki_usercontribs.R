@@ -54,7 +54,7 @@ wiki_usercontribs <- function(con,
   }
   
   #Get
-  contribs_content <- wiki_call(contribs_url, con$CurlOpts)
+  contribs_content <- wiki_call(contribs_url, con$Config)
     
   #Check
   handle_missing_users(contribs_content)

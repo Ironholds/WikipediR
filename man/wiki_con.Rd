@@ -5,7 +5,7 @@
 \usage{
 wiki_con(language, project = c("wikipedia", "commons", "species",
   "wikisource", "wikiquote", "wikinews", "wikibooks", "wikiversity",
-  "wikivoyage"), w_timeout = 5)
+  "wikivoyage"), w_timeout = 5, ua = NULL)
 }
 \arguments{
 \item{language}{The two or three-letter project language code - for example,
@@ -15,6 +15,9 @@ en.wikiquote.org has the language code "en"}
 wikisource, wikiquote, wikinews, wikibooks, wikiversity and wikivoyage.}
 
 \item{w_timeout}{The number of seconds before requests time out. Set to 5 by default.}
+
+\item{ua}{custom modifications to the user agent. To obey API etiquette, you should be
+including contact information.}
 }
 \description{
 wiki_con generates a connector object necessary to use the other API calls in WikipediR

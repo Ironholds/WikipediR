@@ -43,7 +43,7 @@ wiki_revision <- function(con, revisions, properties = c("content","ids","flags"
   revision_url <- paste(con$URL,"&rvcontentformat=text/x-wiki&action=query&prop=revisions&rvprop=",properties,"&revids=",revisions, sep = "")
   
   #Run
-  revision_content <- wiki_call(URL = revision_url, con$CurlOpts)
+  revision_content <- wiki_call(URL = revision_url, con$Config)
   
   #Check for invalid RevIDs
   handle_invalid_revIDs(revision_content)

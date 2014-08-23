@@ -55,7 +55,7 @@ wiki_userinfo <- function(con, usernames, properties = c("blockinfo","groups","i
   user_url <- paste(con$URL,"&action=query&list=users&usprop=",properties,"&ususers=",usernames,sep = "")
   
   #Retrieve the content
-  user_content <- wiki_call(URL = user_url, con$CurlOpts)
+  user_content <- wiki_call(URL = user_url, con$Config)
   
   #Check for missing users
   handle_missing_users(user_content)
