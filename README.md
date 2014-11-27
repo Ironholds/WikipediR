@@ -30,7 +30,6 @@ Dependencies
 
 To-Do
 ======
-* Introduce a full suite of unit tests;
 * Look for a more elegant way of handling the parameter names in the returned JSON block;
 * Introduce authentication, via both direct MediaWiki authentication and OAuth
 

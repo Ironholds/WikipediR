@@ -1,6 +1,7 @@
 Version 1.0.1
 ------------------------------------------------------------------------------
 * Roxygenised documentation, some R CHECK errors fixed.
+* Test suite added for error handlers.
 
 Version 1.0.0
 ------------------------------------------------------------------------------
