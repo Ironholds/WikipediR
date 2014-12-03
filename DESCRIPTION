@@ -5,8 +5,10 @@ Version: 1.1.0
 Date: 2014-08-15
 Author: Oliver Keyes
 Maintainer: Oliver Keyes <okeyes@wikimedia.org>
-Description: WikipediR is a wrapper for the MediaWiki API, aimed particularly
-    at the Wikimedia 'production' wikis, such as Wikipedia
+Description: A wrapper for the MediaWiki API, aimed particularly at the
+    Wikimedia 'production' wikis, such as Wikipedia. It can be used to retrieve
+    page text, information about users or the history of pages, and elements of
+    the category tree.
 License: MIT + file LICENSE
 Depends:
     httr,
