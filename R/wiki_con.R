@@ -31,7 +31,7 @@
 #'a function, \code{\link{RDataRebuild}}, is provided in this package to allow the end user to update the wiki
 #'listings whenever they want.
 #'
-#'
+#'@importFrom httr user_agent
 #'@seealso \code{\link{RDataRebuild}}
 #'@export
 
