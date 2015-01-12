@@ -6,29 +6,32 @@ query <- function(url, ...){
   
   #Encode url, add "http://", query
   url <- paste0("http://",URLencode(url))
-  response <- GET(url, ...)
+  response <- GET(url, user_agent("WikipediR - http://cran.r-project.org/web/packages/WikipediR/index.html"), ...)
   
   #Check the validity of the response
   stop_for_status(response)
   
   #Parse the response, check for API errors, return
   parsed_response <- response_parse(response = response)
-  handle_API_errors(parsed_response)
+  if(!is.null(parsed_response$error)){
+    stop("The API returned an error: ",parsed_response$error$code," - ", parsed_response$error$info)
+  }
+  
   return(parsed_response)
 }
 
 #Constructor for the URL
-url_gen <- function(language, project, domain = NULL){
+url_gen <- function(language, project, domain = NULL, ...){
   
   if(is.null(domain)){
     #Commons and Wikispecies have different URL formats, so those have to be handled in a hinky way.
     if(project %in% c("commons","species")){
-      url <- paste0(project, ".wikimedia.org/w/api.php?format=json")
+      url <- paste0(project, ".wikimedia.org/w/api.php?format=json", ...)
     } else {
-      url <- paste0(language, "." ,project, ".org/w/api.php?format=json")
+      url <- paste0(language, "." ,project, ".org/w/api.php?format=json", ...)
     }
   } else {
-    url <- paste0(domain,"/w/api.php?format=json")
+    url <- paste0(domain,"/w/api.php?format=json", ...)
   }
 
   #Return
