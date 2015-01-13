@@ -1,7 +1,7 @@
 #General functions and error handlers for
 #generic queries and query construction.
 
-#'@importFrom httr GET
+#'@importFrom httr GET user_agent stop_for_status
 query <- function(url, ...){
   
   #Encode url, add "http://", query

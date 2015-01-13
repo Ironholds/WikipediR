@@ -13,5 +13,5 @@ test_that("HTML content can be retrieved through revision_content", {
 })
 
 test_that("Diffs can be retrieved through revision_content", {
-  expect_true({revision_diff("en","wikipedia", revisions = c("129122231","129122233"));TRUE})
+  expect_true({revision_diff("en","wikipedia", revisions = "129122231", direction = "next");TRUE})
 })

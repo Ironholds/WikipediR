@@ -25,8 +25,7 @@ for the querying of non-Wikimedia MediaWiki instances.}
 "user" (the username of the person responsible for that entry), "userid" (the userID of said
 person), "comment" (the edit summary associated with the entry), "parsedcomment" (the same,
 but parsed, generating HTML from any wikitext in that comment), "flags" (whether the revision
-was 'minor' or not), "timestamp" (the timestamp of the revision, which can be parsed with
-\code{\link{wiki_timestamp}}), "title" (the name of the page the entry affected), "ids"
+was 'minor' or not), "timestamp", "title" (the name of the page the entry affected), "ids"
 (the page id, along with the old and new revision IDs when applicable) "sizes" (the size,
 in uncompressed bytes, of the entry, and, in the case of revisions, the size of the edit
 it displaced), "tags" (any tags associated with the revision) and "loginfo" (applicable only

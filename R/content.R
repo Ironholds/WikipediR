@@ -27,14 +27,17 @@ invalid_revs <- function(parsed_response){
 #'@param as_wikitext whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
 #'Set to FALSE by default.
 #'
-#'@param properties Properties associated with the page, namely "text" (the actual content)
-#'and "revid" (the revision ID of the current version).
-#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso \code{\link{revision_diff}} for retrieving 'diffs' between revisions,
 #'\code{\link{revision_content}} for retrieving the text of specified revisions.
 #'
+#'@examples
+#'#Content from a Wikimedia project
+#'wp_content <- page_content("en","wikipedia", page = "Aaron Halfaker")
+#'
+#'#Content from a non-Wikimedia project
+#'rw_content <- page_content(domain = "rationalwiki.org", page = "New Age")
 #'@export
 page_content <- function(language = NULL, project = NULL, domain = NULL,
                          page, as_wikitext = FALSE, ...){
@@ -91,9 +94,14 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
 #'\code{\link{revision_diff}} for diffs between revisions,
 #'and \code{\link{page_content}} for the content a specific page currently has.
 #'
+#'@examples
+#'
+#'#Revision content from a Wikimedia project
+#'wp_content <- revision_content("en","wikipedia", revisions = 552373187)
+#'
+#'#Revision content from a non-Wikimedia project
+#'rw_content <- revision_content(domain = "rationalwiki.org", revisions = 88616)
 #'@export
-
-#Retrieves revision text
 revision_content <- function(language = NULL, project = NULL, domain = NULL,
                              revisions, properties = c("content","ids","flags","timestamp",
                                                        "user","userid","size",
@@ -122,7 +130,7 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
 #'@title Generates a "diff" between a pair of revisions
 #'
 #'@description
-#'wiki_diff generates a diff between two revisions in a MediaWiki page.
+#'revision_diff generates a diff between two revisions in a MediaWiki page.
 #'This is provided as an XML-parsable blob inside the returned JSON object.
 #'
 #'@param language The language code of the project you wish to query,
@@ -139,8 +147,7 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
 #'
 #'@param properties Properties you're trying to retrieve about that revision, should you want to;
 #'options include "ids" (the revision ID of the revision...which is pointless),
-#'"flags" (whether the revision was 'minor' or not), "timestamp" (the timestamp of the revision,
-#'which can be parsed with \code{\link{wiki_timestamp}}),"user" (the username of the person
+#'"flags" (whether the revision was 'minor' or not), "timestamp","user" (the username of the person
 #'who made that revision), "userid" (the userID of the person who made the revision),
 #'"size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of
 #'the revision text), "contentmodel" (the content model of the page, usually "wikitext"),
@@ -165,15 +172,25 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
 #'sensible to retrieve the revisions themselves using \code{\link{revision_content}} and compute the
 #'diffs yourself.
 #'
+#'@seealso \code{\link{page_content}} for retrieving the current content of a specific page, and
+#'\code{\link{revision_content}} for retrieving the text of specific revisions.
+#'
+#'@examples
+#'
+#'#Wikimedia diff
+#'wp_diff <- revision_diff("en","wikipedia", revisions = 552373187, direction = "next")
+#'
+#'#Non-Wikimedia diff
+#'rw_diff <- revision_diff(domain = "rationalwiki.org", revisions = 88616, direction = "next")
 #'@export
 revision_diff <- function(language = NULL, project = NULL, domain = NULL,
                           revisions, properties = c("ids","flags","timestamp","user","userid","size",
                                                     "sha1","contentmodel","comment","parsedcomment",
                                                     "tags","flagged"),
-                          direction = c("prev","next","cur"), ...){
+                          direction, ...){
   
   #Check and construct URL
-  direction <- match.arg(direction)
+  direction <- match.arg(direction, c("prev","next","cur"))
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   revisions <- handle_limits(revisions, 50)

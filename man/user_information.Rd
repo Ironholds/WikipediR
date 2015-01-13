@@ -40,7 +40,7 @@ including registration date, gender and editcount.
 }
 \section{Warnings}{
 
-There are a few caveats with the data provided by \code{wiki_userinfo}, mostly stemming from
+There are a few caveats with the data provided by \code{user_information}, mostly stemming from
 historical inconsistencies and peculiarities in MediaWiki.
 
 \code{groups} and \code{implicitgroups} gives you the user's permissions and group membership

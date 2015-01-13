@@ -7,7 +7,7 @@
 revision_diff(language = NULL, project = NULL, domain = NULL, revisions,
   properties = c("ids", "flags", "timestamp", "user", "userid", "size",
   "sha1", "contentmodel", "comment", "parsedcomment", "tags", "flagged"),
-  direction = c("prev", "next", "cur"), ...)
+  direction, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -24,8 +24,7 @@ for the querying of non-Wikimedia MediaWiki instances.}
 
 \item{properties}{Properties you're trying to retrieve about that revision, should you want to;
 options include "ids" (the revision ID of the revision...which is pointless),
-"flags" (whether the revision was 'minor' or not), "timestamp" (the timestamp of the revision,
-which can be parsed with \code{\link{wiki_timestamp}}),"user" (the username of the person
+"flags" (whether the revision was 'minor' or not), "timestamp","user" (the username of the person
 who made that revision), "userid" (the userID of the person who made the revision),
 "size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of
 the revision text), "contentmodel" (the content model of the page, usually "wikitext"),
@@ -40,7 +39,7 @@ revision on that page) and "cur" (compare to the current, extant version of the 
 \item{...}{further arguments to pass to httr's GET.}
 }
 \description{
-wiki_diff generates a diff between two revisions in a MediaWiki page.
+revision_diff generates a diff between two revisions in a MediaWiki page.
 This is provided as an XML-parsable blob inside the returned JSON object.
 }
 \section{Warnings}{
@@ -54,5 +53,16 @@ with the cached diffs, one of the uncached diffs, and a warning.
 If you're going to be asking for a lot of diffs, some of which may not be cached, it may be more
 sensible to retrieve the revisions themselves using \code{\link{revision_content}} and compute the
 diffs yourself.
+}
+\examples{
+#Wikimedia diff
+wp_diff <- revision_diff("en","wikipedia", revisions = 552373187, direction = "next")
+
+#Non-Wikimedia diff
+rw_diff <- revision_diff(domain = "rationalwiki.org", revisions = 88616, direction = "next")
+}
+\seealso{
+\code{\link{page_content}} for retrieving the current content of a specific page, and
+\code{\link{revision_content}} for retrieving the text of specific revisions.
 }
 

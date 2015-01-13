@@ -24,9 +24,8 @@ for the querying of non-Wikimedia MediaWiki instances.}
 Due to limitations at the API end, you can only retrieve edits for one user at a time.}
 
 \item{properties}{The metadata you want associated with each edit. Potential metadata includes "ids"
-(the revision ID of the revision, which can be passed into \code{\link{wiki_revision}}),
-"title" (the name of the page that was edited), "timestamp" (the timestamp of the edit,
-which can be parsed with \code{\link{wiki_timestamp}}), "comment" (the edit summary associated
+(the revision ID of the revision, which can be passed into \code{\link{revision_content}}),
+"title" (the name of the page that was edited), "timestamp", "comment" (the edit summary associated
 with the revision), "parsedcomment" (the same, but parsed, generating HTML from any wikitext
 in that comment), "size" (the size, in uncompressed bytes, of the edit), "sizediff" (the size
 delta between this edit, and the last edit to the page), "flags" (whether the revision was
@@ -56,6 +55,6 @@ rw_contribs <- user_contributions(domain = "rationalwiki.org", username = "David
 }
 \seealso{
 \code{\link{user_information}} for information about a specific user (or group of users),
-and \code{recentchanges} for non-user-specific recent actions.
+and \code{recent_changes} for non-user-specific recent actions.
 }
 

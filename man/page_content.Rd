@@ -24,13 +24,17 @@ for the querying of non-Wikimedia MediaWiki instances.}
 Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
-
-\item{properties}{Properties associated with the page, namely "text" (the actual content)
-and "revid" (the revision ID of the current version).}
 }
 \description{
 wiki_page retrieves the DOM of a particular MediaWiki page,
 as a HTML blob inside a JSON object.
+}
+\examples{
+#Content from a Wikimedia project
+wp_content <- page_content("en","wikipedia", page = "Aaron Halfaker")
+
+#Content from a non-Wikimedia project
+rw_content <- page_content(domain = "rationalwiki.org", page = "New Age")
 }
 \seealso{
 \code{\link{revision_diff}} for retrieving 'diffs' between revisions,

@@ -39,6 +39,13 @@ and its internal processes. Set to FALSE by default.}
 \description{
 Retrieves categories associated with a page (or list of pages) on a MediaWiki instance
 }
+\examples{
+#Retrieve the categories for the "New Age" article on en.wiki
+cats <- categories_in_page("en", "wikipedia", pages = "New Age")
+
+#Retrieve the categories for the "New Age" article on rationalwiki.
+rw_cats <- categories_in_page(domain = "rationalwiki.org", pages = "New Age")
+}
 \seealso{
 \code{\link{pages_in_category}} for pages in a specified category.
 }
