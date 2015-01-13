@@ -9,6 +9,10 @@
 #'@param project The project you wish to query ("wikiquote"), if appropriate.
 #'Should be provided in conjunction with \code{language}.
 #'
+#'@param domain as an alternative to a \code{language} and \code{project} combination,
+#'you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
+#'for the querying of non-Wikimedia MediaWiki instances.
+#'
 #'@param pages A vector of page titles, with or without spaces, that you want to retrieve
 #'categories for.
 #'
