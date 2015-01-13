@@ -24,23 +24,30 @@ invalid_revs <- function(parsed_response){
 #'
 #'@param page The title of the page you want to retrieve
 #'
-#'@param properties Properties associated with the page, namely "text" (the actual, HTML content)
-#'and "revid" (the revision ID of the current version), the latter of which allows you to use
-#'\code{\link{wiki_revision}} to retrieve the underlying wikitext.
+#'@param as_wikitext whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
+#'Set to FALSE by default.
 #'
-#'@seealso \code{\link{wiki_diff}} for retrieving 'diffs' between revisions,
-#'\code{\link{wiki_revision}} for retrieving the text of specified revisions.
+#'@param properties Properties associated with the page, namely "text" (the actual content)
+#'and "revid" (the revision ID of the current version).
+#'
+#'@param ... further arguments to pass to httr's GET.
+#'
+#'@seealso \code{\link{revision_diff}} for retrieving 'diffs' between revisions,
+#'\code{\link{revision_content}} for retrieving the text of specified revisions.
 #'
 #'@export
 page_content <- function(language = NULL, project = NULL, domain = NULL,
-                         page, properties = c("text","revid")) {
+                         page, as_wikitext = FALSE, ...){
   
   #Format and construct URL.
-  page <- handle_limits(page, 1)
-  properties <- match.arg(arg = properties, several.ok = TRUE)
+  if(as_wikitext){
+    properties <- c("wikitext","revid")
+  } else {
+    properties <- c("text","revid")
+  }
   properties <- paste(properties, collapse = "|")
-  url <- url_gen(language, project, domain, "&contentformat=application/json&action=parse&page=", page,
-                 "&prop=", properties)
+  page <- handle_limits(page, 1)  
+  url <- url_gen(language, project, domain, "&action=parse&page=", page, "&prop=", properties)
   
   #Run  
   content <- query(url, ...)
@@ -69,9 +76,9 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
 #'
 #'@param properties Properties you're trying to retrieve about that revision, should you want to;
 #'options include "ids" (the revision ID of the revision...which is pointless),
-#'"flags" (whether the revision was 'minor' or not), "timestamp" (the timestamp of the revision,
-#'which can be parsed with \code{\link{wiki_timestamp}}),"user" (the username of the person
-#'who made that revision), "userid" (the userID of the person who made the revision),
+#'"flags" (whether the revision was 'minor' or not), "timestamp" (the timestamp of the revision),
+#'"user" (the username of the person who made that revision), "userid"
+#'(the userID of the person who made the revision),
 #'"size" (the size, in uncompressed bytes, of the revision), "sha1" (the SHA-1 hash of
 #'the revision text), "contentmodel" (the content model of the page, usually "wikitext"),
 #'"comment" (the revision summary associated with the revision), "parsedcomment" (the same,
@@ -81,8 +88,8 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso
-#'\code{\link{wiki_con}}, \code{\link{wiki_diff}} for diffs between revisions,
-#'and \code{\link{wiki_page}} for the content a specific page currently has.
+#'\code{\link{revision_diff}} for diffs between revisions,
+#'and \code{\link{page_content}} for the content a specific page currently has.
 #'
 #'@export
 
@@ -174,15 +181,12 @@ revision_diff <- function(language = NULL, project = NULL, domain = NULL,
                  properties, "&rvdiffto=", direction, "&rvcontentformat=text/css&revids=",
                  revisions)
   
-  #Retrieve the content
-  diff_content <- query(url, ...)
-  
-  #Check for invalid RevIDs
-  invalid_revs(diff_content)
-  
-  #Check for uncached diffs
-  handle_uncached_diffs(diff_content)
-  
-  #Return
-  return(diff_content)
+  #Retrieve the content, check for invalid RevIDs and uncached diffs,
+  #return.
+  content <- query(url, ...)
+  invalid_revs(content)
+  if(sum(grepl(x = names(unlist(content)), pattern = "diff.notcached"))){
+    warning("This request contained uncached diffs; these will not be returned", call. = FALSE)
+  }
+  return(content)
 }

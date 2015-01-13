@@ -53,7 +53,11 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
   
   #Retrieve, check, return
   content <- query(url, ...)
-  handle_missing_pages(content)
+  page_names <- names(unlist(content))
+  missing_pages <- sum(grepl(x = page_names, pattern = "missing"))
+  if(missing_pages){
+    warning("This request contained ",missing_pages," invalid page title(s)", call. = FALSE)
+  }
   return(content)
 }
 
