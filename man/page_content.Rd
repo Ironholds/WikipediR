@@ -5,7 +5,7 @@
 \title{Retrieves MediaWiki page content}
 \usage{
 page_content(language = NULL, project = NULL, domain = NULL, page,
-  properties = c("text", "revid"))
+  as_wikitext = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -20,16 +20,20 @@ for the querying of non-Wikimedia MediaWiki instances.}
 
 \item{page}{The title of the page you want to retrieve}
 
-\item{properties}{Properties associated with the page, namely "text" (the actual, HTML content)
-and "revid" (the revision ID of the current version), the latter of which allows you to use
-\code{\link{wiki_revision}} to retrieve the underlying wikitext.}
+\item{as_wikitext}{whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
+Set to FALSE by default.}
+
+\item{...}{further arguments to pass to httr's GET.}
+
+\item{properties}{Properties associated with the page, namely "text" (the actual content)
+and "revid" (the revision ID of the current version).}
 }
 \description{
 wiki_page retrieves the DOM of a particular MediaWiki page,
 as a HTML blob inside a JSON object.
 }
 \seealso{
-\code{\link{wiki_diff}} for retrieving 'diffs' between revisions,
-\code{\link{wiki_revision}} for retrieving the text of specified revisions.
+\code{\link{revision_diff}} for retrieving 'diffs' between revisions,
+\code{\link{revision_content}} for retrieving the text of specified revisions.
 }
 
