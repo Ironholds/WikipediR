@@ -3,6 +3,8 @@
 export(categories_in_page)
 export(page_backlinks)
 export(page_content)
+export(page_external_links)
+export(page_links)
 export(pages_in_category)
 export(recent_changes)
 export(revision_content)

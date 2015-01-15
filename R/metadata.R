@@ -41,11 +41,101 @@ page_backlinks <- function(language = NULL, project = NULL, domain = NULL,
                            page, direction = "ascending", namespaces = NULL,
                            ...){
   
-  #Construct URL
   url <- url_gen(language, project, domain, "&action=query&list=backlinks&bltitle=", page,
                  "&bldir=", direction)
   if(!is.null(namespaces)){
     url <- paste0(url,"&blnamespace=",paste(namespaces, collapse = "|"))
+  }
+  content <- query(url, ...)
+  return(content)
+}
+
+#'@title Retrieve a page's links
+#'
+#'@description
+#'page_links, when provided with a page title, retrieves internal wikilinks from the
+#'current revision of that page.
+#'
+#'@param language The language code of the project you wish to query,
+#'if appropriate.
+#'
+#'@param project The project you wish to query ("wikiquote"), if appropriate.
+#'Should be provided in conjunction with \code{language}.
+#'
+#'@param domain as an alternative to a \code{language} and \code{project} combination,
+#'you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
+#'for the querying of non-Wikimedia MediaWiki instances.
+#'
+#'@param page the title of the page you want the links of.
+#'
+#'@param direction the direction to order the links in, by destination page ID: "ascending"
+#'or "descending". Set to "ascending" by default.
+#'
+#'@param namespaces The namespaces to filter to. By default, links to any namespace
+#'are retrieved: alternately, a numeric vector of accepted namespaces (which are described
+#'\href{https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces}{here}) can be
+#'provided, and only backlinks from pages within those namespaces will be returned.
+#'
+#'@param ... further arguments to pass to httr's GET.
+#'
+#'@examples
+#'#Links
+#'links <- page_links("en","wikipedia", page = "Aaron Halfaker")
+#'
+#'#Namespace-specific links
+#'mainspace_links <- page_links("en","wikipedia", page = "Aaron Halfaker", namespaces = 0)
+#'@export
+page_links <- function(language = NULL, project = NULL, domain = NULL,
+                       page, direction = "ascending", namespaces = NULL,
+                       ...){
+  
+  url <- url_gen(language, project, domain, "&action=query&prop=links&titles=", page,
+                 "&pldir=", direction)
+  if(!is.null(namespaces)){
+    url <- paste0(url,"&plnamespace=",paste(namespaces, collapse = "|"))
+  }
+  content <- query(url, ...)
+  return(content)  
+}
+
+#'@title Retrieve a page's links
+#'
+#'@description
+#'page_links, when provided with a page title, retrieves internal wikilinks from the
+#'current revision of that page.
+#'
+#'@param language The language code of the project you wish to query,
+#'if appropriate.
+#'
+#'@param project The project you wish to query ("wikiquote"), if appropriate.
+#'Should be provided in conjunction with \code{language}.
+#'
+#'@param domain as an alternative to a \code{language} and \code{project} combination,
+#'you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
+#'for the querying of non-Wikimedia MediaWiki instances.
+#'
+#'@param page the title of the page you want the links of.
+#'
+#'@param protocol limit links to those with certain link protocols. Options are listed
+#'in Special:ApiSandbox's
+#'\href{https://en.wikipedia.org/wiki/Special:ApiSandbox#action=query&prop=extlinks}{elprotocol field}.
+#'
+#'@param ... further arguments to pass to httr's GET.
+#'
+#'@examples
+#'#Links
+#'links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
+#'
+#'#Protocol-specific links
+#'mainspace_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
+#'@export
+page_external_links <- function(language = NULL, project = NULL, domain = NULL,
+                                page, protocol = NULL,
+                                ...){
+  
+  url <- url_gen(language, project, domain, "&action=query&prop=extlinks&titles=", page)
+  if(!is.null(protocol)){
+    url <- paste0(url,"&elprotocol=", protocol)
   }
   content <- query(url, ...)
   return(content)
