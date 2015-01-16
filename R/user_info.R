@@ -79,7 +79,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
   }
   
   #Get, check and return
-  contribs_content <- query(url, ...)
+  contribs_content <- query(url, "ucontribs", ...)
   missing_users(contribs_content)
   return(contribs_content)
 }
@@ -159,7 +159,7 @@ user_information <- function(language = NULL, project = NULL, domain = NULL,
                  paste0("&action=query&list=users&usprop=",properties,"&ususers=",usernames))
   
   #Retrieve the content, check it, return.
-  user_content <- query(url, ...)
+  user_content <- query(url, "uinfo", ...)
   missing_users(user_content)
   return(user_content)
   

@@ -32,9 +32,9 @@ current revision of that page.
 }
 \examples{
 #Links
-links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
+external_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
 
 #Protocol-specific links
-mainspace_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
+external_http_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
 }
 

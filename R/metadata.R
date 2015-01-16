@@ -46,7 +46,7 @@ page_backlinks <- function(language = NULL, project = NULL, domain = NULL,
   if(!is.null(namespaces)){
     url <- paste0(url,"&blnamespace=",paste(namespaces, collapse = "|"))
   }
-  content <- query(url, ...)
+  content <- query(url, "blink", ...)
   return(content)
 }
 
@@ -94,14 +94,14 @@ page_links <- function(language = NULL, project = NULL, domain = NULL,
   if(!is.null(namespaces)){
     url <- paste0(url,"&plnamespace=",paste(namespaces, collapse = "|"))
   }
-  content <- query(url, ...)
+  content <- query(url, "plink", ...)
   return(content)  
 }
 
 #'@title Retrieve a page's links
 #'
 #'@description
-#'page_links, when provided with a page title, retrieves internal wikilinks from the
+#'page_external_links, when provided with a page title, retrieves external wikilinks from the
 #'current revision of that page.
 #'
 #'@param language The language code of the project you wish to query,
@@ -124,10 +124,10 @@ page_links <- function(language = NULL, project = NULL, domain = NULL,
 #'
 #'@examples
 #'#Links
-#'links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
+#'external_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
 #'
 #'#Protocol-specific links
-#'mainspace_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
+#'external_http_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
 #'@export
 page_external_links <- function(language = NULL, project = NULL, domain = NULL,
                                 page, protocol = NULL,
@@ -137,6 +137,20 @@ page_external_links <- function(language = NULL, project = NULL, domain = NULL,
   if(!is.null(protocol)){
     url <- paste0(url,"&elprotocol=", protocol)
   }
-  content <- query(url, ...)
+  content <- query(url, "elink", ...)
+  return(content)
+}
+
+#'@export
+page_info <- function(language = NULL, project = NULL, domain = NULL, 
+                      page, properties = c("protection","talkid","watched","watchers",
+                                           "notificationtimestamp","subjectid","url",
+                                           "readable","preload","displaytitle"), ...){
+  
+  #Construct URL
+  properties <- match.arg(arg = properties, several.ok = TRUE)
+  properties <- paste(properties, collapse = "|")
+  url <- url_gen(language, project, domain, "&action=query&prop=info&inprop=", properties, "&titles=", page)
+  content <- query(url, "pageinfo", ...)
   return(content)
 }

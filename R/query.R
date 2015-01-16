@@ -2,7 +2,7 @@
 #generic queries and query construction.
 
 #'@importFrom httr GET user_agent stop_for_status
-query <- function(url, ...){
+query <- function(url, out_class, ...){
   
   #Encode url, add "http://", query
   url <- paste0("http://",URLencode(url))
@@ -12,7 +12,7 @@ query <- function(url, ...){
   stop_for_status(response)
   
   #Parse the response, check for API errors, return
-  parsed_response <- response_parse(response = response)
+  parsed_response <- response_parse(response = response, out_class = out_class)
   if(!is.null(parsed_response$error)){
     stop("The API returned an error: ",parsed_response$error$code," - ", parsed_response$error$info)
   }
@@ -40,13 +40,14 @@ url_gen <- function(language, project, domain = NULL, ...){
 
 #'@importFrom httr content
 #'@importFrom jsonlite fromJSON
-response_parse <- function(response){
+response_parse <- function(response, out_class){
   
   #Convert it into a character vector
   response_text <- content(x = response, as = "text")
   
   #From there, turn it into an R object from JSON
   parsed_text <- fromJSON(txt = response_text, simplifyVector = FALSE)
+  class(parsed_text) <- out_class
   
   #Return
   return(parsed_text)

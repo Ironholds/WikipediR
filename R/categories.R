@@ -59,7 +59,7 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
                         "&titles=",pages))
   
   #Retrieve, check, return
-  content <- query(url, ...)
+  content <- query(url, "pagecats", ...)
   page_names <- names(unlist(content))
   missing_pages <- sum(grepl(x = page_names, pattern = "missing"))
   if(missing_pages){
@@ -131,6 +131,6 @@ pages_in_category <- function(language = NULL, project = NULL, domain = NULL, ca
                 categories, "&cmprop=", properties, "&cmtype=",type)
   
   #Query and return
-  content <- query(url, ...)
+  content <- query(url, "catpages", ...)
   return(content)
 }
