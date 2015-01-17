@@ -26,14 +26,16 @@ parse_response.uinfo <- function(x){
 parse_response.ucontribs <- function(x){
   x <- x$query$usercontribs
   results <- unlist(x)
-  results <- data.frame(matrix(results, nrow=length(x), byrow=T), stringsAsFactors=F)
+  results <- data.frame(matrix(results, nrow = length(x), byrow = TRUE),
+                        stringsAsFactors = FALSE)
   names(results) <- names(x[[1]])
   return(results)
 }
 parse_response.catpages <- function(x){
   x <- x$query$categorymembers
   results <- unlist(x)
-  results <- data.frame(matrix(results, nrow=length(x), byrow=T), stringsAsFactors=F)
+  results <- data.frame(matrix(results, nrow = length(x), byrow = TRUE),
+                        stringsAsFactors = F)
   names(results) <- names(x[[1]])
   return(results)
 }
@@ -42,7 +44,8 @@ parse_response.pagecats <- function(x){
   names(x) <- NULL
   results <- lapply(x,function(x){
     cats <- unlist(x$categories)
-    cats <- data.frame(matrix(cats, nrow=length(x$categories), byrow=T), stringsAsFactors=F)
+    cats <- data.frame(matrix(cats, nrow = length(x$categories), byrow = TRUE),
+                       stringsAsFactors = FALSE)
     names(cats) <- names(x$categories[[1]])
     x$categories <- cats
     return(x)
