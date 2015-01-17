@@ -43,6 +43,9 @@ missing_users <- function(parsed_response){
 #'@param limit The number of edits to be retrieved. 50 is the maximum for logged-out API users,
 #'and putting in more than 50 will generate a warning.
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso \code{\link{user_information}} for information about a specific user (or group of users),
@@ -63,7 +66,8 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
                                username, properties = c("ids", "title", "timestamp",
                                                         "comment", "parsedcomment", "size", 
                                                         "sizediff", "flags", "tags"),
-                               mainspace = FALSE, limit = 50, ...){
+                               mainspace = FALSE, limit = 50, clean_response = FALSE,
+                               ...){
   
   #Perform checks, construct URL
   properties <- match.arg(properties, several.ok = TRUE)
@@ -79,7 +83,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
   }
   
   #Get, check and return
-  contribs_content <- query(url, "ucontribs", ...)
+  contribs_content <- query(url, "ucontribs", clean_response, ...)
   missing_users(contribs_content)
   return(contribs_content)
 }
@@ -112,6 +116,9 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
 #'their group membership grants them), "editcount" (how many non-deleted edits they have),
 #'"registration" (the date when they registered), "emailable" (whether they are contactable
 #'through Special:EmailUser) and "gender" (their provided gender).
+#'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
 #'
 #'@param ... further arguments to pass to httr's GET.
 #'
@@ -149,7 +156,7 @@ user_information <- function(language = NULL, project = NULL, domain = NULL,
                              usernames, properties = c("blockinfo","groups","implicitgroups",
                                                        "rights","editcount","registration",
                                                        "emailable","gender"),
-                             ...){
+                             clean_response = FALSE, ...){
   
   #Check, construct URL
   properties <- match.arg(properties, several.ok = TRUE)
@@ -159,7 +166,7 @@ user_information <- function(language = NULL, project = NULL, domain = NULL,
                  paste0("&action=query&list=users&usprop=",properties,"&ususers=",usernames))
   
   #Retrieve the content, check it, return.
-  user_content <- query(url, "uinfo", ...)
+  user_content <- query(url, "uinfo", clean_response, ...)
   missing_users(user_content)
   return(user_content)
   

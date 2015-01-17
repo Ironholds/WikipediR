@@ -27,7 +27,7 @@ in Special:ApiSandbox's
 \item{...}{further arguments to pass to httr's GET.}
 }
 \description{
-page_links, when provided with a page title, retrieves internal wikilinks from the
+page_external_links, when provided with a page title, retrieves external wikilinks from the
 current revision of that page.
 }
 \examples{

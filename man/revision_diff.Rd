@@ -7,7 +7,7 @@
 revision_diff(language = NULL, project = NULL, domain = NULL, revisions,
   properties = c("ids", "flags", "timestamp", "user", "userid", "size",
   "sha1", "contentmodel", "comment", "parsedcomment", "tags", "flagged"),
-  direction, ...)
+  direction, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -35,6 +35,8 @@ with the revision) and "flagged" (the revision's status under Flagged Revisions)
 \item{direction}{The direction you want the diff to go in from the revisionID you have provided.
 Options are "prev" (compare to the previous revision on that page), "next" (compare to the next
 revision on that page) and "cur" (compare to the current, extant version of the page).}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }

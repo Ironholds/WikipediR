@@ -7,7 +7,7 @@
 revision_content(language = NULL, project = NULL, domain = NULL,
   revisions, properties = c("content", "ids", "flags", "timestamp", "user",
   "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "tags"),
-  ...)
+  clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,

@@ -6,7 +6,8 @@
 \usage{
 user_information(language = NULL, project = NULL, domain = NULL,
   usernames, properties = c("blockinfo", "groups", "implicitgroups", "rights",
-  "editcount", "registration", "emailable", "gender"), ...)
+  "editcount", "registration", "emailable", "gender"), clean_response = FALSE,
+  ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -31,6 +32,9 @@ through inheritance, as a result of membership in other groups), "rights" (what 
 their group membership grants them), "editcount" (how many non-deleted edits they have),
 "registration" (the date when they registered), "emailable" (whether they are contactable
 through Special:EmailUser) and "gender" (their provided gender).}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }

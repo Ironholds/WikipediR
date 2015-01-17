@@ -2,6 +2,18 @@ parse_response <- function(x){
   UseMethod("parse_response", x)
 }
 
+parse_response.rcontent <- function(x){
+  x <- x$query$pages
+  names(x) <- NULL
+  return(x)
+}
+
+parse_response.rdiff <- function(x){
+  x <- x$query$pages
+  names(x) <- NULL
+  return(x)
+}
+
 parse_response.uinfo <- function(x){
   x <- x$query$users
   return(x)

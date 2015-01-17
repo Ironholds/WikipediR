@@ -27,6 +27,9 @@ invalid_revs <- function(parsed_response){
 #'@param as_wikitext whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
 #'Set to FALSE by default.
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso \code{\link{revision_diff}} for retrieving 'diffs' between revisions,
@@ -40,7 +43,7 @@ invalid_revs <- function(parsed_response){
 #'rw_content <- page_content(domain = "rationalwiki.org", page = "New Age")
 #'@export
 page_content <- function(language = NULL, project = NULL, domain = NULL,
-                         page, as_wikitext = FALSE, ...){
+                         page, as_wikitext = FALSE, clean_response = FALSE, ...){
   
   #Format and construct URL.
   if(as_wikitext){
@@ -53,7 +56,7 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
   url <- url_gen(language, project, domain, "&action=parse&page=", page, "&prop=", properties)
   
   #Run  
-  content <- query(url, ...)
+  content <- query(url, "pcontent", clean_response, ...)
   
   #Return
   return(content)
@@ -107,7 +110,7 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
                                                        "user","userid","size",
                                                        "sha1","contentmodel","comment",
                                                        "parsedcomment","tags"),
-                             ...){
+                             clean_response = FALSE, ...){
   
   #Format, construct URL.
   properties <- match.arg(arg = properties, several.ok = TRUE)
@@ -118,7 +121,7 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
                  properties, "&revids=",revisions)
   
   #Run
-  content <- query(url, ...)
+  content <- query(url, "rcontent", clean_response, ...)
   
   #Check for invalid RevIDs
   invalid_revs(content)
@@ -159,6 +162,8 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
 #'Options are "prev" (compare to the previous revision on that page), "next" (compare to the next
 #'revision on that page) and "cur" (compare to the current, extant version of the page).
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@section Warnings:
@@ -187,7 +192,7 @@ revision_diff <- function(language = NULL, project = NULL, domain = NULL,
                           revisions, properties = c("ids","flags","timestamp","user","userid","size",
                                                     "sha1","contentmodel","comment","parsedcomment",
                                                     "tags","flagged"),
-                          direction, ...){
+                          direction, clean_response = FALSE, ...){
   
   #Check and construct URL
   direction <- match.arg(direction, c("prev","next","cur"))
@@ -200,7 +205,7 @@ revision_diff <- function(language = NULL, project = NULL, domain = NULL,
   
   #Retrieve the content, check for invalid RevIDs and uncached diffs,
   #return.
-  content <- query(url, ...)
+  content <- query(url, "rdiff", clean_response, ...)
   invalid_revs(content)
   if(sum(grepl(x = names(unlist(content)), pattern = "diff.notcached"))){
     warning("This request contained uncached diffs; these will not be returned", call. = FALSE)

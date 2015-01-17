@@ -5,7 +5,7 @@
 \title{Retrieves MediaWiki page content}
 \usage{
 page_content(language = NULL, project = NULL, domain = NULL, page,
-  as_wikitext = FALSE, ...)
+  as_wikitext = FALSE, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -21,6 +21,9 @@ for the querying of non-Wikimedia MediaWiki instances.}
 \item{page}{The title of the page you want to retrieve}
 
 \item{as_wikitext}{whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
+Set to FALSE by default.}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
 Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}

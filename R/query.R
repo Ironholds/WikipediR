@@ -2,7 +2,7 @@
 #generic queries and query construction.
 
 #'@importFrom httr GET user_agent stop_for_status
-query <- function(url, out_class, ...){
+query <- function(url, out_class, clean_response = FALSE, ...){
   
   #Encode url, add "http://", query
   url <- paste0("http://",URLencode(url))
@@ -15,6 +15,9 @@ query <- function(url, out_class, ...){
   parsed_response <- response_parse(response = response, out_class = out_class)
   if(!is.null(parsed_response$error)){
     stop("The API returned an error: ",parsed_response$error$code," - ", parsed_response$error$info)
+  }
+  if(clean_response){
+    parsed_response <- parse_response(parsed_response)
   }
   
   return(parsed_response)

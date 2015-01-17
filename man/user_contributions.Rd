@@ -7,7 +7,7 @@
 user_contributions(language = NULL, project = NULL, domain = NULL,
   username, properties = c("ids", "title", "timestamp", "comment",
   "parsedcomment", "size", "sizediff", "flags", "tags"), mainspace = FALSE,
-  limit = 50, ...)
+  limit = 50, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -37,6 +37,9 @@ actual articles. Set to FALSE by default}
 
 \item{limit}{The number of edits to be retrieved. 50 is the maximum for logged-out API users,
 and putting in more than 50 will generate a warning.}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }
