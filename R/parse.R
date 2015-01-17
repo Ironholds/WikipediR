@@ -2,6 +2,10 @@ parse_response <- function(x){
   UseMethod("parse_response", x)
 }
 
+parse_response.rchanges <- function(x){
+  x <- x$query$recentchanges
+  return(x)
+}
 parse_response.rcontent <- function(x){
   x <- x$query$pages
   names(x) <- NULL

@@ -6,7 +6,7 @@
 \usage{
 categories_in_page(language = NULL, project = NULL, domain = NULL, pages,
   properties = c("sortkey", "timestamp", "hidden"), limit = 50,
-  show_hidden = FALSE, ...)
+  show_hidden = FALSE, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -33,6 +33,9 @@ to 50 by default.}
 \item{show_hidden}{Whether or not to include 'hidden' categories in the categories
 that are retrieved - these are usually associated with the maintenance of Wikipedia
 and its internal processes. Set to FALSE by default.}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }

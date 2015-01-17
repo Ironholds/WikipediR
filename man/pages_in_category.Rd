@@ -6,7 +6,8 @@
 \usage{
 pages_in_category(language = NULL, project = NULL, domain = NULL,
   categories, properties = c("title", "ids", "sortkey", "sortkeyprefix",
-  "type", "timestamp"), type = c("page", "subcat", "file"), ...)
+  "type", "timestamp"), type = c("page", "subcat", "file"),
+  clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -31,6 +32,9 @@ Options are "title" (the name of the member, including namespace),
 
 \item{type}{The type of member you're interested in returning;
 options are any permutation of "page" (pages), "subcat" (subcategories) and "file" (files).}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET().}
 }

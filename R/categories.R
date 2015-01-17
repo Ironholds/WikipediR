@@ -28,6 +28,9 @@
 #'that are retrieved - these are usually associated with the maintenance of Wikipedia
 #'and its internal processes. Set to FALSE by default.
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso \code{\link{pages_in_category}} for pages in a specified category.
@@ -42,7 +45,8 @@
 #'@export
 categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
                                pages, properties = c("sortkey","timestamp","hidden"),
-                               limit = 50, show_hidden = FALSE, ...){
+                               limit = 50, show_hidden = FALSE, clean_response = FALSE,
+                               ...){
   
   #Check, construct URL
   properties <- match.arg(properties, several.ok = TRUE)
@@ -59,7 +63,7 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
                         "&titles=",pages))
   
   #Retrieve, check, return
-  content <- query(url, "pagecats", ...)
+  content <- query(url, "pagecats", clean_response, ...)
   page_names <- names(unlist(content))
   missing_pages <- sum(grepl(x = page_names, pattern = "missing"))
   if(missing_pages){
@@ -98,6 +102,9 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
 #'@param type The type of member you're interested in returning;
 #'options are any permutation of "page" (pages), "subcat" (subcategories) and "file" (files).
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
+#'
 #'@param ... further arguments to pass to httr's GET().
 #'
 #'@section warnings:
@@ -116,7 +123,8 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
 #'@export
 pages_in_category <- function(language = NULL, project = NULL, domain = NULL, categories,
                               properties = c("title","ids","sortkey","sortkeyprefix","type","timestamp"),
-                              type = c("page","subcat","file"), ...){
+                              type = c("page","subcat","file"), clean_response = FALSE,
+                              ...){
   
   #Format and check
   categories <- gsub(x = categories, pattern = "^", replacement = "Category:")
@@ -131,6 +139,6 @@ pages_in_category <- function(language = NULL, project = NULL, domain = NULL, ca
                 categories, "&cmprop=", properties, "&cmtype=",type)
   
   #Query and return
-  content <- query(url, "catpages", ...)
+  content <- query(url, "catpages", clean_response, ...)
   return(content)
 }

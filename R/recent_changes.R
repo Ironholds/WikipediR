@@ -42,6 +42,9 @@
 #'@param top Should the request only return "top" entries - in other words, the most recent
 #'entry on a page? Set to FALSE by default.
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@export
@@ -51,7 +54,8 @@ recent_changes <- function(language = NULL, project = NULL, domain = NULL,
                                           "title","ids","sizes","redirect",
                                           "loginfo","tags","sha1"),
                            type = c("edit","external","new","log"),
-                           tag = NULL, dir = "newer", limit = 50, top = FALSE, ...) {
+                           tag = NULL, dir = "newer", limit = 50, top = FALSE, 
+                           clean_response = FALSE, ...) {
   
   #Format and standardise, construct URL
   type <- match.arg(arg = type, several.ok = TRUE)
@@ -68,7 +72,7 @@ recent_changes <- function(language = NULL, project = NULL, domain = NULL,
   }
   
   #Query
-  content <- query(url, ...)
+  content <- query(url, "rchanges", clean_response, ...)
   
   #Return
   return(content)

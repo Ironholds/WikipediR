@@ -14,7 +14,8 @@ query <- function(url, out_class, clean_response = FALSE, ...){
   #Parse the response, check for API errors, return
   parsed_response <- response_parse(response = response, out_class = out_class)
   if(!is.null(parsed_response$error)){
-    stop("The API returned an error: ",parsed_response$error$code," - ", parsed_response$error$info)
+    stop("The API returned an error: ", parsed_response$error$code,
+         " - ", parsed_response$error$info)
   }
   if(clean_response){
     parsed_response <- parse_response(parsed_response)
