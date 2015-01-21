@@ -10,10 +10,12 @@ Description: A wrapper for the MediaWiki API, aimed particularly at the
     page text, information about users or the history of pages, and elements of
     the category tree.
 License: MIT + file LICENSE
-Depends:
+Depends: 
     httr,
     jsonlite
-Suggests:
+Suggests: 
     XML,
-    testthat
+    testthat,
+    knitr
 BugReports: https://github.com/Ironholds/WikipediR/issues
+VignetteBuilder: knitr
