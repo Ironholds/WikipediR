@@ -8,7 +8,7 @@ recent_changes(language = NULL, project = NULL, domain = NULL,
   properties = c("user", "userid", "comment", "parsedcomment", "flags",
   "timestamp", "title", "ids", "sizes", "redirect", "loginfo", "tags", "sha1"),
   type = c("edit", "external", "new", "log"), tag = NULL, dir = "newer",
-  limit = 50, top = FALSE, ...)
+  limit = 50, top = FALSE, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -48,6 +48,9 @@ also the maximum number per-request for logged-out users.}
 
 \item{top}{Should the request only return "top" entries - in other words, the most recent
 entry on a page? Set to FALSE by default.}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }

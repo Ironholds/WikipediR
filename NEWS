@@ -1,10 +1,8 @@
 Version 1.2.0
-1.2.0 features vast syntax changes. Please check the vignettes.
+------------------------------------------------------------------------------
 
 NEW FEATURES
-*page_content can now output wikimarkup rather than HTML
-*page_backlinks allows the retrieval of a page's backlinks.
-BUG FIXES
+*1.2.0 features vast syntax changes and a large number of new functions. Please check the vignette.
 
 DEVELOPMENT
 *Massive internal refactoring

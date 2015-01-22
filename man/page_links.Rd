@@ -5,7 +5,7 @@
 \title{Retrieve a page's links}
 \usage{
 page_links(language = NULL, project = NULL, domain = NULL, page,
-  direction = "ascending", namespaces = NULL, ...)
+  direction = "ascending", namespaces = NULL, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -27,6 +27,9 @@ or "descending". Set to "ascending" by default.}
 are retrieved: alternately, a numeric vector of accepted namespaces (which are described
 \href{https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces}{here}) can be
 provided, and only backlinks from pages within those namespaces will be returned.}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }

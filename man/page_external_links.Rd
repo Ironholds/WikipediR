@@ -5,7 +5,7 @@
 \title{Retrieve a page's links}
 \usage{
 page_external_links(language = NULL, project = NULL, domain = NULL, page,
-  protocol = NULL, ...)
+  protocol = NULL, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -23,6 +23,9 @@ for the querying of non-Wikimedia MediaWiki instances.}
 \item{protocol}{limit links to those with certain link protocols. Options are listed
 in Special:ApiSandbox's
 \href{https://en.wikipedia.org/wiki/Special:ApiSandbox#action=query&prop=extlinks}{elprotocol field}.}
+
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.
+Set to FALSE by default.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }

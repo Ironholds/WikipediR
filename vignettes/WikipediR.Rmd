@@ -1,58 +1,17 @@
----
-title: "Vignette Title"
-author: "Vignette Author"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
----
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{urltools}
+-->
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+#WikipediR: A MediaWiki API client library
+Many websites run on versions of MediaWiki, most prominently Wikipedia and its sister sites. WikipediR is an API client library that allows you to conveniently make requests for content and associated metadata against MediaWiki instances.
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+## Retrieving content
+"content" can mean a lot of different things - but mostly, we mean the text of an article, either its current version or any previous versions. Current versions can be retrieved using <code>page\_content</code>, which provides both HTML and wikitext as possible output formats. Older, individual revisions can be retrieved with <code>revision\_content</code>. These functions also return a range of possible metadata about the revisions or articles in question.
 
-## Vignette Info
+Diffs between revisions can be generated using <code>revision\_diff</code>, while individual ''elements'' of a page's content - particularly links - can be extracted using <code>page\_links</code>, <code>page\_backlinks</code>, and <code>page\_external\_links</code>. And if the interest is in changes to content, rather than content itself, <code>recent\_changes</code> can be used to grab a slice of a project's Special:RecentChanges feed.
 
-Note the various macros within the `vignette` setion of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+## Retrieving metadata
+Page-related information can be accessed using <code>page\_info</code>, while categories that a page possesses can be retrieved with <code>categories\_in\_page</code> - the inverse of this operation (what pages are in a particular category?) uses <code>pages\_in\_category</code>.
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+User-related info can be accessed with <code>user\_information</code>, while <code>user\_contributions</code> allows access to recent contributions by a particular user: this can be conveniently linked up with <code>revision\_content</code>, mentioned above, to retrieve the content of the last N edits by a particular editor, or metadata about those edits.

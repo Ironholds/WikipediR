@@ -91,6 +91,8 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
 #'but parsed, generating HTML from any wikitext in that comment), "tags" (any tags associated
 #'with the revision) and "flagged" (the revision's status under Flagged Revisions).
 #'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso

@@ -33,6 +33,8 @@ the revision text), "contentmodel" (the content model of the page, usually "wiki
 but parsed, generating HTML from any wikitext in that comment), "tags" (any tags associated
 with the revision) and "flagged" (the revision's status under Flagged Revisions).}
 
+\item{clean_response}{whether to do some basic sanitising of the resulting data structure.}
+
 \item{...}{further arguments to pass to httr's GET.}
 }
 \description{
