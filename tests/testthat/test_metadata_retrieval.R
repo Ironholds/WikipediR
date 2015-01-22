@@ -29,5 +29,5 @@ test_that("page info can be retrieved through page_info", {
 })
 
 test_that("page info with specified params can be retrieved through page_info", {
-  expect_true({page_info("en","wikipedia", page = "Aaron Halfaker", properties = "readable");TRUE})
+  expect_true({page_info("en","wikipedia", page = "Aaron Halfaker", properties = "talkid");TRUE})
 })

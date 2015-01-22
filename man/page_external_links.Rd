@@ -38,6 +38,7 @@ current revision of that page.
 external_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
 
 #Protocol-specific links
-external_http_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
+external_http_links <- page_external_links("en","wikipedia",
+                                          page = "Aaron Halfaker", protocol = "http")
 }
 

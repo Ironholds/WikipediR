@@ -136,7 +136,8 @@ page_links <- function(language = NULL, project = NULL, domain = NULL,
 #'external_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
 #'
 #'#Protocol-specific links
-#'external_http_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker", protocol = "http")
+#'external_http_links <- page_external_links("en","wikipedia",
+#'                                           page = "Aaron Halfaker", protocol = "http")
 #'@export
 page_external_links <- function(language = NULL, project = NULL, domain = NULL,
                                 page, protocol = NULL, clean_response = FALSE,
