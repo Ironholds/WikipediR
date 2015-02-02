@@ -6,7 +6,12 @@ query <- function(url, out_class, clean_response = FALSE, ...){
   
   #Encode url, add "http://", query
   url <- paste0("http://",URLencode(url))
-  response <- GET(url, user_agent("WikipediR - http://cran.r-project.org/web/packages/WikipediR/index.html"), ...)
+  args <- list(...)
+  if(length(args) > 0 && "config" %in% class(args[[1]]) && "useragent" %in% names(args[[1]])){
+    response <- GET(url, ...)
+  } else {
+    response <- GET(url, user_agent("WikipediR - https://github.com/Ironholds/WikipediR"), ...)
+  }
   
   #Check the validity of the response
   stop_for_status(response)
