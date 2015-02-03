@@ -1,6 +1,18 @@
 #General functions and error handlers for
 #generic queries and query construction.
 
+#'@title base query function
+#'@description not designed to be used by anyone except
+#'a third-party reuser package, such as WikidataR
+#'@param url a URL body
+#'@param out_class the class to set on the output object; used within
+#'WikidataR to indicate what response-cleaning method should be applied.
+#'
+#'@param clean_response whether to clean the response, using the method assigned
+#'by out_class, or not.
+#'
+#'@param ... further arguments to httr's GET.
+#'@export
 #'@importFrom httr GET user_agent stop_for_status
 query <- function(url, out_class, clean_response = FALSE, ...){
   

@@ -6,6 +6,60 @@ invalid_revs <- function(parsed_response){
   return(invisible())
 }
 
+#'@title Retrieve the page content of a random MediaWiki page
+#'
+#'@description
+#'wiki_page retrieves the DOM of a particular MediaWiki page,
+#'as a HTML blob inside a JSON object.
+#'
+#'@param language The language code of the project you wish to query,
+#'if appropriate.
+#'
+#'@param project The project you wish to query ("wikiquote"), if appropriate.
+#'Should be provided in conjunction with \code{language}.
+#'
+#'@param domain as an alternative to a \code{language} and \code{project} combination,
+#'you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
+#'for the querying of non-Wikimedia MediaWiki instances.
+#'
+#'@param  namespaces The namespaces to consider pages from. By default, pages from any namespace are
+#'considered; alternately, a numeric vector of accepted namespaces (which are described
+#'\href{https://www.mediawiki.org/wiki/Manual:Namespace#Built-in_namespaces}{here}) can be
+#'provided, and only pages within those namespaces will be considered.
+#'
+#'@param as_wikitext whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
+#'Set to FALSE by default.
+#'
+#'@param clean_response whether to do some basic sanitising of the resulting data structure.
+#'Set to FALSE by default.
+#'
+#'@param ... further arguments to pass to httr's GET.
+#'
+#'@seealso \code{\link{page_content}} for retrieving the content of a specific page,
+#'\code{\link{revision_diff}} for retrieving 'diffs' between revisions,
+#'\code{\link{revision_content}} for retrieving the text of specified revisions.
+#'
+#'@examples
+#'#A page from Wikipedia
+#'wp_content <- random_page("en","wikipedia")
+#'
+#'#A page from the mainspace on Wikipedia
+#'wp_article_content <- random_page("en","wikipedia", namespaces = 0)
+#'@export
+random_page <- function(language = NULL, project = NULL, domain = NULL,
+                        namespaces = NULL, as_wikitext = FALSE,
+                        clean_response = FALSE, ...){
+  
+  
+  url <- url_gen(language, project, domain, "&action=query&list=random&rnlimit=1")
+  if(!is.null(namespaces)){
+    url <- paste0(url, "&rnnamespace=", paste(namespaces, collapse = "|"))
+  }
+  page <- query(url, NULL, FALSE)$query$random[[1]]$title
+  content <- page_content(language, project, domain, page, as_wikitext, clean_response, ...)
+  return(content)
+}
+
 #'@title Retrieves MediaWiki page content
 #'
 #'@description
@@ -47,9 +101,9 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
   
   #Format and construct URL.
   if(as_wikitext){
-    properties <- c("wikitext","revid")
+    properties <- "wikitext|revid"
   } else {
-    properties <- c("text","revid")
+    properties <- "text|revid"
   }
   properties <- paste(properties, collapse = "|")
   page <- handle_limits(page, 1)  
