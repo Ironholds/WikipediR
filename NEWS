@@ -3,6 +3,7 @@ Version 1.3.0 (WIP)
 
 NEW FEATURES
 *random_page allows for the retrieval of a randomly-selected page's content
+*page_content now accepts pageIDs as well as page names.
 
 DEVELOPMENT
 *Doc tweaks and some simplification of argument parsing around page_content and random_page

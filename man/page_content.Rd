@@ -4,8 +4,8 @@
 \alias{page_content}
 \title{Retrieves MediaWiki page content}
 \usage{
-page_content(language = NULL, project = NULL, domain = NULL, page,
-  as_wikitext = FALSE, clean_response = FALSE, ...)
+page_content(language = NULL, project = NULL, domain = NULL, page_name,
+  page_id = NULL, as_wikitext = FALSE, clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -18,7 +18,10 @@ Should be provided in conjunction with \code{language}.}
 you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
 for the querying of non-Wikimedia MediaWiki instances.}
 
-\item{page}{The title of the page you want to retrieve}
+\item{page_name}{The title of the page you want to retrieve}
+
+\item{page_id}{the pageID of the page you want to retrieve. Set to NULL by default,
+and an alternative to page_name; if both are provided, page_id will be used.}
 
 \item{as_wikitext}{whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
 Set to FALSE by default.}
@@ -34,10 +37,13 @@ as a HTML blob inside a JSON object.
 }
 \examples{
 #Content from a Wikimedia project
-wp_content <- page_content("en","wikipedia", page = "Aaron Halfaker")
+wp_content <- page_content("en","wikipedia", page_name = "Aaron Halfaker")
+
+#Content by ID
+wp_content <- page_content("en", "wikipedia", page_id = 12)
 
 #Content from a non-Wikimedia project
-rw_content <- page_content(domain = "rationalwiki.org", page = "New Age")
+rw_content <- page_content(domain = "rationalwiki.org", page_name = "New Age")
 }
 \seealso{
 \code{\link{revision_diff}} for retrieving 'diffs' between revisions,

@@ -56,7 +56,8 @@ random_page <- function(language = NULL, project = NULL, domain = NULL,
     url <- paste0(url, "&rnnamespace=", paste(namespaces, collapse = "|"))
   }
   page <- query(url, NULL, FALSE)$query$random[[1]]$title
-  content <- page_content(language, project, domain, page, as_wikitext, clean_response, ...)
+  content <- page_content(language = language, project = project, domain = domain,
+                          page_name = page, as_wikitext = as_wikitext, clean_response = clean_response, ...)
   return(content)
 }
 
@@ -76,7 +77,10 @@ random_page <- function(language = NULL, project = NULL, domain = NULL,
 #'you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
 #'for the querying of non-Wikimedia MediaWiki instances.
 #'
-#'@param page The title of the page you want to retrieve
+#'@param page_name The title of the page you want to retrieve
+#'
+#'@param page_id the pageID of the page you want to retrieve. Set to NULL by default,
+#'and an alternative to page_name; if both are provided, page_id will be used.
 #'
 #'@param as_wikitext whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
 #'Set to FALSE by default.
@@ -91,13 +95,16 @@ random_page <- function(language = NULL, project = NULL, domain = NULL,
 #'
 #'@examples
 #'#Content from a Wikimedia project
-#'wp_content <- page_content("en","wikipedia", page = "Aaron Halfaker")
+#'wp_content <- page_content("en","wikipedia", page_name = "Aaron Halfaker")
+#'
+#'#Content by ID
+#'wp_content <- page_content("en", "wikipedia", page_id = 12)
 #'
 #'#Content from a non-Wikimedia project
-#'rw_content <- page_content(domain = "rationalwiki.org", page = "New Age")
+#'rw_content <- page_content(domain = "rationalwiki.org", page_name = "New Age")
 #'@export
 page_content <- function(language = NULL, project = NULL, domain = NULL,
-                         page, as_wikitext = FALSE, clean_response = FALSE, ...){
+                         page_name, page_id = NULL, as_wikitext = FALSE, clean_response = FALSE, ...){
   
   #Format and construct URL.
   if(as_wikitext){
@@ -106,8 +113,14 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
     properties <- "text|revid"
   }
   properties <- paste(properties, collapse = "|")
-  page <- handle_limits(page, 1)  
-  url <- url_gen(language, project, domain, "&action=parse&page=", page, "&prop=", properties)
+  url <- url_gen(language, project, domain, "&action=parse&prop=", properties)
+  if(!is.null(page_id)){
+    page_id <- handle_limits(page_id, 1)
+    url <- paste0(url, "&pageid=", page_id)
+  } else {
+    page_name <- handle_limits(page_name, 1)
+    url <- paste0(url, "&page=", page_name)
+  }
   
   #Run  
   content <- query(url, "pcontent", clean_response, ...)
