@@ -104,7 +104,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
 #'you can also provide a domain ("rationalwiki.org") to the URL constructor, allowing
 #'for the querying of non-Wikimedia MediaWiki instances.
 #'
-#'@param usernames The username(s) of the users you want information on - this should be provided
+#'@param user_names The username(s) of the users you want information on - this should be provided
 #'as a vector. There is a hard limit of 50 distinct users per query, set by MediaWiki's API;
 #'in the event that you go over this, a warning will be issued and the query will only be
 #'performed for the first 50 names in the vector.
@@ -153,7 +153,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
 #'                              properties = "registration")
 #'@export
 user_information <- function(language = NULL, project = NULL, domain = NULL,
-                             usernames, properties = c("blockinfo","groups","implicitgroups",
+                             user_names, properties = c("blockinfo","groups","implicitgroups",
                                                        "rights","editcount","registration",
                                                        "emailable","gender"),
                              clean_response = FALSE, ...){
@@ -161,9 +161,9 @@ user_information <- function(language = NULL, project = NULL, domain = NULL,
   #Check, construct URL
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
-  usernames <- handle_limits(usernames, 50)
+  user_names <- handle_limits(user_names, 50)
   url <- url_gen(language, project, domain,
-                 paste0("&action=query&list=users&usprop=",properties,"&ususers=",usernames))
+                 paste0("&action=query&list=users&usprop=",properties,"&ususers=",user_names))
   
   #Retrieve the content, check it, return.
   user_content <- query(url, "uinfo", clean_response, ...)
