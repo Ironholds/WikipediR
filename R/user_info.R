@@ -145,11 +145,11 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
 #'
 #'@examples
 #'#Retrieving information from a Wikimedia project
-#'user_info <- user_information("en", "wikipedia", usernames = "David Gerard",
+#'user_info <- user_information("en", "wikipedia", user_names = "David Gerard",
 #'                              properties = "registration")
 #'
 #'#Non-Wikimedia projects
-#'user_info <- user_information(domain = "rationalwiki.org", usernames = "David Gerard",
+#'user_info <- user_information(domain = "rationalwiki.org", user_names = "David Gerard",
 #'                              properties = "registration")
 #'@export
 user_information <- function(language = NULL, project = NULL, domain = NULL,
