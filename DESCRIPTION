@@ -4,7 +4,7 @@ Title: A MediaWiki API Wrapper
 Version: 1.2.0
 Date: 2015-05-16
 Author: Oliver Keyes
-Maintainer: Oliver Keyes <okeyes@wikimedia.org>
+Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: A wrapper for the MediaWiki API, aimed particularly at the
     Wikimedia 'production' wikis, such as Wikipedia. It can be used to retrieve
     page text, information about users or the history of pages, and elements of
