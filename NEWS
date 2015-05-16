@@ -1,22 +1,15 @@
-Version 1.3.0 (WIP)
-------------------------------------------------------------------------------
-
-NEW FEATURES
-*random_page allows for the retrieval of a randomly-selected page's content
-*page_content now accepts pageIDs as well as page names.
-
-DEVELOPMENT
-*Doc tweaks and some simplification of argument parsing around page_content and random_page
-*query() marked as exportable to allow simple third-party plugins into WikipediR
-
 Version 1.2.0
 ------------------------------------------------------------------------------
 
 NEW FEATURES
-*1.2.0 features vast syntax changes and a large number of new functions. Please check the vignette.
+*Random pages can now be retrieved with random_page
+*pageID based querying is available
+*Custom user
 
 DEVELOPMENT
-*Massive internal refactoring
+*Doc tweaks and some simplification of argument parsing around page_content and random_page
+*Additional unit tests
+*query() marked as exportable to allow simple third-party plugins into WikipediR
 
 Version 1.0.1
 ------------------------------------------------------------------------------
