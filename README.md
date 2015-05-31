@@ -5,7 +5,9 @@ An R API wrapper for MediaWiki, optimised for the Wikimedia Foundation MediaWiki
 
 __Author:__ Oliver Keyes<br/>
 __License:__ [MIT](http://opensource.org/licenses/MIT)<br/>
-__Status:__ In development
+__Status:__ Stable
+
+![downloads](http://cranlogs.r-pkg.org/badges/grand-total/WikipediR)
 
 Description
 ======
