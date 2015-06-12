@@ -1,3 +1,10 @@
+Version 1.2.1 [WIP]
+------------------------------------------------------------------------------
+
+BUG FIXES
+
+* `limit` introduced as an argument to pages_in_category - thanks to Ben Marwick for finding the bug.
+
 Version 1.2.0
 ------------------------------------------------------------------------------
 

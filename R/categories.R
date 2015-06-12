@@ -105,6 +105,9 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
 #'@param clean_response whether to do some basic sanitising of the resulting data structure.
 #'Set to FALSE by default.
 #'
+#'@param limit The maximum number of members to retrieve for each category. Set
+#'to 50 by default.
+#'
 #'@param ... further arguments to pass to httr's GET().
 #'
 #'@section warnings:
@@ -123,7 +126,7 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
 #'@export
 pages_in_category <- function(language = NULL, project = NULL, domain = NULL, categories,
                               properties = c("title","ids","sortkey","sortkeyprefix","type","timestamp"),
-                              type = c("page","subcat","file"), clean_response = FALSE,
+                              type = c("page","subcat","file"), clean_response = FALSE, limit = 50,
                               ...){
   
   #Format and check
@@ -136,7 +139,7 @@ pages_in_category <- function(language = NULL, project = NULL, domain = NULL, ca
   
   #Construct URL
   url <- url_gen(language, project, domain, "&action=query&list=categorymembers&cmtitle=",
-                categories, "&cmprop=", properties, "&cmtype=",type)
+                categories, "&cmprop=", properties, "&cmtype=",type, "&cmlimit=", limit)
   
   #Query and return
   content <- query(url, "catpages", clean_response, ...)

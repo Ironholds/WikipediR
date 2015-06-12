@@ -7,7 +7,7 @@
 pages_in_category(language = NULL, project = NULL, domain = NULL,
   categories, properties = c("title", "ids", "sortkey", "sortkeyprefix",
   "type", "timestamp"), type = c("page", "subcat", "file"),
-  clean_response = FALSE, ...)
+  clean_response = FALSE, limit = 50, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -35,6 +35,9 @@ options are any permutation of "page" (pages), "subcat" (subcategories) and "fil
 
 \item{clean_response}{whether to do some basic sanitising of the resulting data structure.
 Set to FALSE by default.}
+
+\item{limit}{The maximum number of members to retrieve for each category. Set
+to 50 by default.}
 
 \item{...}{further arguments to pass to httr's GET().}
 }
