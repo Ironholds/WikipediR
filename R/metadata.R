@@ -71,6 +71,8 @@ page_backlinks <- function(language = NULL, project = NULL, domain = NULL,
 #'
 #'@param page the title of the page you want the links of.
 #'
+#'@param limit the number of links to retrieve. 50 by default; a maximum of 500 is set server-side.
+#'
 #'@param direction the direction to order the links in, by destination page ID: "ascending"
 #'or "descending". Set to "ascending" by default.
 #'
@@ -92,11 +94,12 @@ page_backlinks <- function(language = NULL, project = NULL, domain = NULL,
 #'mainspace_links <- page_links("en","wikipedia", page = "Aaron Halfaker", namespaces = 0)
 #'@export
 page_links <- function(language = NULL, project = NULL, domain = NULL,
-                       page, direction = "ascending", namespaces = NULL,
+                       page, limit = 50, direction = "ascending", namespaces = NULL,
                        clean_response = FALSE, ...){
   
   url <- url_gen(language, project, domain, "&action=query&prop=links&titles=", page,
-                 "&pldir=", direction)
+                 "&pldir=", direction, "&pllimit=", limit)
+  
   if(!is.null(namespaces)){
     url <- paste0(url,"&plnamespace=",paste(namespaces, collapse = "|"))
   }

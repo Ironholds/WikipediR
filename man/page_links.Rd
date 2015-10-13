@@ -5,7 +5,8 @@
 \title{Retrieve a page's links}
 \usage{
 page_links(language = NULL, project = NULL, domain = NULL, page,
-  direction = "ascending", namespaces = NULL, clean_response = FALSE, ...)
+  limit = 50, direction = "ascending", namespaces = NULL,
+  clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -19,6 +20,8 @@ you can also provide a domain ("rationalwiki.org") to the URL constructor, allow
 for the querying of non-Wikimedia MediaWiki instances.}
 
 \item{page}{the title of the page you want the links of.}
+
+\item{limit}{the number of links to retrieve. 50 by default; a maximum of 500 is set server-side.}
 
 \item{direction}{the direction to order the links in, by destination page ID: "ascending"
 or "descending". Set to "ascending" by default.}
