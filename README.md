@@ -18,10 +18,9 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 Installation
 ======
 
-For the most recent version:
+For the most recent version, on CRAN:
 
-    library(devtools)
-    devtools::install_github("ironholds/WikipediR",ref="1.2.0")
+    install.packages("WikipediR")
     
 For the development version:
 
