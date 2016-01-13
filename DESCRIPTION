@@ -15,7 +15,9 @@ Depends:
     jsonlite
 Suggests:
     testthat,
-    knitr
+    knitr,
+    WikidataR,
+    pageviews
 BugReports: https://github.com/Ironholds/WikipediR/issues
 URL: https://github.com/Ironholds/WikipediR/
 VignetteBuilder: knitr
