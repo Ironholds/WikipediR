@@ -20,13 +20,13 @@ query <- function(url, out_class, clean_response = FALSE, ...){
   url <- paste0("http://",URLencode(url))
   args <- list(...)
   if(length(args) > 0 && "config" %in% class(args[[1]]) && "useragent" %in% names(args[[1]])){
-    response <- GET(url, ...)
+    response <- httr::GET(url, ...)
   } else {
-    response <- GET(url, user_agent("WikipediR - https://github.com/Ironholds/WikipediR"), ...)
+    response <- httr::GET(url, httr::user_agent("WikipediR - https://github.com/Ironholds/WikipediR"), ...)
   }
   
   #Check the validity of the response
-  stop_for_status(response)
+  httr::stop_for_status(response)
   
   #Parse the response, check for API errors, return
   parsed_response <- response_parse(response = response, out_class = out_class)
@@ -64,10 +64,10 @@ url_gen <- function(language, project, domain = NULL, ...){
 response_parse <- function(response, out_class){
   
   #Convert it into a character vector
-  response_text <- content(x = response, as = "text")
+  response_text <- httr::content(x = response, as = "text")
   
   #From there, turn it into an R object from JSON
-  parsed_text <- fromJSON(txt = response_text, simplifyVector = FALSE)
+  parsed_text <- jsonlite::fromJSON(txt = response_text, simplifyVector = FALSE)
   class(parsed_text) <- out_class
   
   #Return
