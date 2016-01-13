@@ -3,6 +3,7 @@ Version 1.3.0
 
 BUG FIXES
 
+* Various miscellaneous internal improvements.
 * `limit` introduced as an argument to pages_in_category - thanks to Ben Marwick for finding the bug.
 * `limit` introduced as an argument to page_links - thanks to Hui Li of the Universität Heidelberg for the initial report.
 

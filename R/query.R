@@ -14,10 +14,11 @@
 #'@param ... further arguments to httr's GET.
 #'@export
 #'@importFrom httr GET user_agent stop_for_status
+#'@importFrom utils URLencode
 query <- function(url, out_class, clean_response = FALSE, ...){
   
   #Encode url, add "http://", query
-  url <- paste0("http://",URLencode(url))
+  url <- paste0("http://",utils::URLencode(url))
   args <- list(...)
   if(length(args) > 0 && "config" %in% class(args[[1]]) && "useragent" %in% names(args[[1]])){
     response <- httr::GET(url, ...)
