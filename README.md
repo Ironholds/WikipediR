@@ -38,4 +38,4 @@ These issues will be solved in time; if there is a particular feature you want, 
 Dependencies
 ======
 * R. Doy.
-* [httr](http://cran.r-project.org/web/packages/httr/index.html) and its dependencies.
+* [httr](https://cran.r-project.org/package=httr) and its dependencies.
