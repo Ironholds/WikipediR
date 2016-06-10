@@ -5,7 +5,8 @@
 \title{Retrieve the page content of a random MediaWiki page}
 \usage{
 random_page(language = NULL, project = NULL, domain = NULL,
-  namespaces = NULL, as_wikitext = FALSE, clean_response = FALSE, ...)
+  namespaces = NULL, as_wikitext = FALSE, limit = 1,
+  clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -25,6 +26,8 @@ provided, and only pages within those namespaces will be considered.}
 
 \item{as_wikitext}{whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
 Set to FALSE by default.}
+
+\item{limit}{the number of pages to return. 1 by default.}
 
 \item{clean_response}{whether to do some basic sanitising of the resulting data structure.
 Set to FALSE by default.}

@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{urltools}
+%\VignetteIndexEntry{WikipediR}
 -->
 
 #WikipediR: A MediaWiki API client library

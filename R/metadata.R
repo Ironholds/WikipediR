@@ -16,6 +16,8 @@
 #'
 #'@param page the title of the page you want the backlinks of.
 #'
+#'@param limit the number of backlinks to return. Set to 50 (the maximum) by default.
+#'
 #'@param direction the direction to order the backlinks in, by linking page ID: "ascending"
 #'or "descending". Set to "ascending" by default.
 #'
@@ -41,11 +43,11 @@
 #'mainspace_bls <- page_backlinks("en","wikipedia", page = "Aaron Halfaker", namespaces = 0)
 #'@export
 page_backlinks <- function(language = NULL, project = NULL, domain = NULL,
-                           page, direction = "ascending", namespaces = NULL,
+                           page, limit = 50, direction = "ascending", namespaces = NULL,
                            clean_response = FALSE, ...){
   
   url <- url_gen(language, project, domain, "&action=query&list=backlinks&bltitle=", page,
-                 "&bldir=", direction)
+                 "&bldir=", direction, "&bllimit=", limit)
   if(!is.null(namespaces)){
     url <- paste0(url,"&blnamespace=",paste(namespaces, collapse = "|"))
   }

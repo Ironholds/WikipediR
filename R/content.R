@@ -30,6 +30,8 @@ invalid_revs <- function(parsed_response){
 #'@param as_wikitext whether to retrieve the wikimarkup (TRUE) or the HTML (FALSE).
 #'Set to FALSE by default.
 #'
+#'@param limit the number of pages to return. 1 by default.
+#'
 #'@param clean_response whether to do some basic sanitising of the resulting data structure.
 #'Set to FALSE by default.
 #'
@@ -47,18 +49,25 @@ invalid_revs <- function(parsed_response){
 #'wp_article_content <- random_page("en","wikipedia", namespaces = 0)
 #'@export
 random_page <- function(language = NULL, project = NULL, domain = NULL,
-                        namespaces = NULL, as_wikitext = FALSE,
+                        namespaces = NULL, as_wikitext = FALSE, limit = 1,
                         clean_response = FALSE, ...){
   
   
-  url <- url_gen(language, project, domain, "&action=query&list=random&rnlimit=1")
+  url <- url_gen(language, project, domain, "&action=query&list=random&rnlimit=", limit)
   if(!is.null(namespaces)){
     url <- paste0(url, "&rnnamespace=", paste(namespaces, collapse = "|"))
   }
-  page <- query(url, NULL, FALSE)$query$random[[1]]$title
-  content <- page_content(language = language, project = project, domain = domain,
-                          page_name = page, as_wikitext = as_wikitext, clean_response = clean_response, ...)
-  return(content)
+  pages <- query(url, NULL, FALSE)$query$random
+  
+  return(lapply(pages, function(page, language, project, domain, page_name, as_wikitext,
+                         clean_response, ...){
+    content <- page_content(language = language, project = project, domain = domain,
+                            page_name = page$title, as_wikitext = as_wikitext,
+                            clean_response = clean_response, ...)
+    content$parse$text <- content$parse$text[[1]]
+    return(content$parse)
+  }, language = language, project = project, domain = domain, as_wikitext = as_wikitext,
+  clean_response = clean_response, ...))
 }
 
 #'@title Retrieves MediaWiki page content

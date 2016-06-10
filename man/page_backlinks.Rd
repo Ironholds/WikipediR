@@ -5,7 +5,8 @@
 \title{Retrieve a page's backlinks}
 \usage{
 page_backlinks(language = NULL, project = NULL, domain = NULL, page,
-  direction = "ascending", namespaces = NULL, clean_response = FALSE, ...)
+  limit = 50, direction = "ascending", namespaces = NULL,
+  clean_response = FALSE, ...)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -19,6 +20,8 @@ you can also provide a domain ("rationalwiki.org") to the URL constructor, allow
 for the querying of non-Wikimedia MediaWiki instances.}
 
 \item{page}{the title of the page you want the backlinks of.}
+
+\item{limit}{the number of backlinks to return. Set to 50 (the maximum) by default.}
 
 \item{direction}{the direction to order the backlinks in, by linking page ID: "ascending"
 or "descending". Set to "ascending" by default.}
