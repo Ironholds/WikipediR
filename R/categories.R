@@ -57,13 +57,18 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
   } else {
     show_hidden <- "!hidden"
   }
-  url <- url_gen(language, project, domain,
-                 paste0("&action=query&prop=categories&clprop=", properties,
-                        "&clshow=", show_hidden, "&cllimit=", limit,
-                        "&titles=",pages))
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action = "query",
+    prop   = "categories",
+    clprop = properties,
+    clshow = show_hidden,
+    cllimit= limit,
+    titles = pages
+  )
   
   #Retrieve, check, return
-  content <- query(url, "pagecats", clean_response, ...)
+  content <- query(url, "pagecats", clean_response, query_param = query_param, ...)
   page_names <- names(unlist(content))
   missing_pages <- sum(grepl(x = page_names, pattern = "missing"))
   if(missing_pages){
@@ -138,10 +143,17 @@ pages_in_category <- function(language = NULL, project = NULL, domain = NULL, ca
   type <- paste(type, collapse = "|")
   
   #Construct URL
-  url <- url_gen(language, project, domain, "&action=query&list=categorymembers&cmtitle=",
-                categories, "&cmprop=", properties, "&cmtype=",type, "&cmlimit=", limit)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action  = "query",
+    list    = "categorymembers",
+    cmtitle = categories,
+    cmprop  = properties,
+    cmtype  = type,
+    cmlimit = limit
+  )
   
   #Query and return
-  content <- query(url, "catpages", clean_response, ...)
+  content <- query(url, "catpages", clean_response, query_param = query_param, ...)
   return(content)
 }

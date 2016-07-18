@@ -53,11 +53,17 @@ random_page <- function(language = NULL, project = NULL, domain = NULL,
                         clean_response = FALSE, ...){
   
   
-  url <- url_gen(language, project, domain, "&action=query&list=random&rnlimit=", limit)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action  = "query",
+    list    = "random",
+    rnlimit = limit
+  )
+  
   if(!is.null(namespaces)){
-    url <- paste0(url, "&rnnamespace=", paste(namespaces, collapse = "|"))
+    query_param$rnnamespace <- paste(namespaces, collapse = "|")
   }
-  pages <- query(url, NULL, FALSE)$query$random
+  pages <- query(url, NULL, FALSE, query_param = query_param)$query$random
   
   return(lapply(pages, function(page, language, project, domain, page_name, as_wikitext,
                          clean_response, ...){
@@ -122,17 +128,19 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
     properties <- "text|revid"
   }
   properties <- paste(properties, collapse = "|")
-  url <- url_gen(language, project, domain, "&action=parse&prop=", properties)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action = "parse",
+    prop   = properties
+  )
   if(!is.null(page_id)){
-    page_id <- handle_limits(page_id, 1)
-    url <- paste0(url, "&pageid=", page_id)
+    query_param$page_id <- handle_limits(page_id, 1)
   } else {
-    page_name <- handle_limits(page_name, 1)
-    url <- paste0(url, "&page=", page_name)
+    query_param$page <- handle_limits(page_name, 1)
   }
   
   #Run  
-  content <- query(url, "pcontent", clean_response, ...)
+  content <- query(url, "pcontent", clean_response, query_param = query_param, ...)
   
   #Return
   return(content)
@@ -194,12 +202,17 @@ revision_content <- function(language = NULL, project = NULL, domain = NULL,
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   revisions <- handle_limits(revisions, 50)
-  url <- url_gen(language, project, domain,
-                 "&rvcontentformat=text/x-wiki&action=query&prop=revisions&rvprop=",
-                 properties, "&revids=",revisions)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    rvcontentformat = "text/x-wiki",
+    action = "query",
+    prop   = "revisions",
+    rvprop = properties,
+    revids = revisions
+  )
   
   #Run
-  content <- query(url, "rcontent", clean_response, ...)
+  content <- query(url, "rcontent", clean_response, query_param = query_param, ...)
   
   #Check for invalid RevIDs
   invalid_revs(content)
@@ -277,13 +290,19 @@ revision_diff <- function(language = NULL, project = NULL, domain = NULL,
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   revisions <- handle_limits(revisions, 50)
-  url <- url_gen(language, project, domain, "&action=query&prop=revisions&rvprop=",
-                 properties, "&rvdiffto=", direction, "&rvcontentformat=text/css&revids=",
-                 revisions)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action   = "query",
+    prop     = "revisions",
+    rvprop   = properties, 
+    rvdiffto = direction,
+    rvcontentformat = "text/css",
+    revids   = revisions
+  )
   
   #Retrieve the content, check for invalid RevIDs and uncached diffs,
   #return.
-  content <- query(url, "rdiff", clean_response, ...)
+  content <- query(url, "rdiff", clean_response, query_param = query_param, ...)
   invalid_revs(content)
   if(sum(grepl(x = names(unlist(content)), pattern = "diff.notcached"))){
     warning("This request contained uncached diffs; these will not be returned", call. = FALSE)

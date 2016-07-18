@@ -11,17 +11,19 @@
 #'@param clean_response whether to clean the response, using the method assigned
 #'by out_class, or not.
 #'
+#'@param query_param query parameters
+#'
 #'@param ... further arguments to httr's GET.
 #'@export
-query <- function(url, out_class, clean_response = FALSE, ...){
+query <- function(url, out_class, clean_response = FALSE, query_param = list(), ...){
+  # Common query parameters
+  if(is.null(query_param$format)) query_param$format <- "json"
   
-  #Encode url, add "http://", query
-  url <- paste0("http://",utils::URLencode(url))
   args <- list(...)
   if(length(args) > 0 && "config" %in% class(args[[1]]) && "useragent" %in% names(args[[1]])){
-    response <- httr::GET(url, ...)
+    response <- httr::GET(url, query = query_param, ...)
   } else {
-    response <- httr::GET(url, httr::user_agent("WikipediR - https://github.com/Ironholds/WikipediR"), ...)
+    response <- httr::GET(url, query = query_param, httr::user_agent("WikipediR - https://github.com/Ironholds/WikipediR"), ...)
   }
   
   #Check the validity of the response
@@ -46,12 +48,12 @@ url_gen <- function(language, project, domain = NULL, ...){
   if(is.null(domain)){
     #Commons and Wikispecies have different URL formats, so those have to be handled in a hinky way.
     if(project %in% c("commons","species")){
-      url <- paste0(project, ".wikimedia.org/w/api.php?format=json", ...)
+      url <- sprintf("http://%s.wikimedia.org/w/api.php", project)
     } else {
-      url <- paste0(language, "." ,project, ".org/w/api.php?format=json", ...)
+      url <- sprintf("http://%s.%s.org/w/api.php", language, project)
     }
   } else {
-    url <- paste0(domain,"/w/api.php?format=json", ...)
+    url <- sprintf("http://%s/w/api.php", domain)
   }
   
   #Return

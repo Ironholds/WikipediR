@@ -46,12 +46,19 @@ page_backlinks <- function(language = NULL, project = NULL, domain = NULL,
                            page, limit = 50, direction = "ascending", namespaces = NULL,
                            clean_response = FALSE, ...){
   
-  url <- url_gen(language, project, domain, "&action=query&list=backlinks&bltitle=", page,
-                 "&bldir=", direction, "&bllimit=", limit)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action  = "query",
+    list    = "backlinks",
+    bltitle = page,
+    bldir   = direction,
+    bllimit = limit
+  )
+  
   if(!is.null(namespaces)){
-    url <- paste0(url,"&blnamespace=",paste(namespaces, collapse = "|"))
+    query_param$blnamespace <- paste(namespaces, collapse = "|")
   }
-  content <- query(url, "blink", clean_response, ...)
+  content <- query(url, "blink", clean_response, query_param = query_param, ...)
   return(content)
 }
 
@@ -99,13 +106,19 @@ page_links <- function(language = NULL, project = NULL, domain = NULL,
                        page, limit = 50, direction = "ascending", namespaces = NULL,
                        clean_response = FALSE, ...){
   
-  url <- url_gen(language, project, domain, "&action=query&prop=links&titles=", page,
-                 "&pldir=", direction, "&pllimit=", limit)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action  = "query",
+    prop    = "links",
+    titles  = page,
+    pldir   = direction,
+    pllimit = limit
+  )
   
   if(!is.null(namespaces)){
-    url <- paste0(url,"&plnamespace=",paste(namespaces, collapse = "|"))
+    query_param$plnamespace <- paste(namespaces, collapse = "|")
   }
-  content <- query(url, "plink", clean_response, ...)
+  content <- query(url, "plink", clean_response, query_param = query_param, ...)
   return(content)  
 }
 
@@ -148,11 +161,16 @@ page_external_links <- function(language = NULL, project = NULL, domain = NULL,
                                 page, protocol = NULL, clean_response = FALSE,
                                 ...){
   
-  url <- url_gen(language, project, domain, "&action=query&prop=extlinks&titles=", page)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action = "query",
+    prop   = "extlinks",
+    titles = page
+  )
   if(!is.null(protocol)){
-    url <- paste0(url,"&elprotocol=", protocol)
+    query_param$elprotocol <- protocol
   }
-  content <- query(url, "elink", clean_response, ...)
+  content <- query(url, "elink", clean_response, query_param  = query_param, ...)
   return(content)
 }
 
@@ -195,7 +213,13 @@ page_info <- function(language = NULL, project = NULL, domain = NULL,
   
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
-  url <- url_gen(language, project, domain, "&action=query&prop=info&inprop=", properties, "&titles=", page)
-  content <- query(url, "pageinfo", clean_response, ...)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action = "query",
+    prop   = "info",
+    inprop = properties,
+    titles = page
+  )
+  content <- query(url, "pageinfo", clean_response, query_param = query_param, ...)
   return(content)
 }

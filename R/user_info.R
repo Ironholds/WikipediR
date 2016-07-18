@@ -73,17 +73,22 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   username <- handle_limits(username, 1)
-  url <- url_gen(language, project, domain,
-                 paste0("&action=query&list=usercontribs&uclimit=", limit,
-                        "&ucuser=", username, "&ucprop=", properties))
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action  = "query",
+    list    = "usercontribs",
+    uclimit = limit,
+    ucuser  = username,
+    ucprop  = properties
+  )
   
   #If only article contributions are desired, note that.
   if(mainspace){
-    url <- paste0(url, "&ucnamespace=0", sep = "")
+    query_param$ucnamespace <- 0
   }
   
   #Get, check and return
-  contribs_content <- query(url, "ucontribs", clean_response, ...)
+  contribs_content <- query(url, "ucontribs", clean_response, query_param = query_param, ...)
   missing_users(contribs_content)
   return(contribs_content)
 }
@@ -162,11 +167,17 @@ user_information <- function(language = NULL, project = NULL, domain = NULL,
   properties <- match.arg(properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
   user_names <- handle_limits(user_names, 50)
-  url <- url_gen(language, project, domain,
-                 paste0("&action=query&list=users&usprop=",properties,"&ususers=",user_names))
-  
+  url <- url_gen(language, project, domain)
+  query_param = list(
+    action  = "query",
+    list    = "users",
+    usprop  = properties,
+    ususers = user_names
+    
+  )
+
   #Retrieve the content, check it, return.
-  user_content <- query(url, "uinfo", clean_response, ...)
+  user_content <- query(url, "uinfo", clean_response, query_param = query_param, ...)
   missing_users(user_content)
   return(user_content)
   
