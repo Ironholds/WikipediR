@@ -17,7 +17,9 @@
 #'@export
 query <- function(url, out_class, clean_response = FALSE, query_param = list(), ...){
   # Common query parameters
-  if(is.null(query_param$format)) query_param$format <- "json"
+  if(is.null(query_param$format)) {
+    query_param$format <- "json"
+  }
   
   args <- list(...)
   if(length(args) > 0 && "config" %in% class(args[[1]]) && "useragent" %in% names(args[[1]])){
