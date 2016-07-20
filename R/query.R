@@ -21,11 +21,6 @@ query <- function(url, out_class, clean_response = FALSE, query_param = list(), 
     query_param$format <- "json"
   }
   
-  # Add http scheme if url has no scheme
-  if(!any(startsWith(url, c("http://", "https://")))) {
-    url <- paste0("http://", url)
-  }
-  
   args <- list(...)
   if(length(args) > 0 && "config" %in% class(args[[1]]) && "useragent" %in% names(args[[1]])){
     response <- httr::GET(url, query = query_param, ...)
