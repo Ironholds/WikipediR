@@ -62,17 +62,24 @@ recent_changes <- function(language = NULL, project = NULL, domain = NULL,
   type <- paste(type, collapse = "|")
   properties <- match.arg(arg = properties, several.ok = TRUE)
   properties <- paste(properties, collapse = "|")
-  url <- url_gen(language, project, domain, "&action=query&list=recentchanges&rcdir=",
-                 dir, "&rcprop=", properties, "&rctype=", type, "&rclimit=", limit)
+  url <- url_gen(language, project, domain)
+  query_param <- list(
+    action = "query",
+    list   = "recentchanges",
+    rcdir  = dir,
+    rcprop = properties,
+    rctype = type,
+    rclimit= limit
+  )
   if(!is.null(tag)){
-    url <- paste0(url, "&rctag=", paste(tag, collapse = "|"))
+    query_param$rctag <-  paste(tag, collapse = "|")
   }
   if(top){
-    url <- paste0(url, "&rctoponly")
+    query_param$rctoponly <- ""
   }
   
   #Query
-  content <- query(url, "rchanges", clean_response, ...)
+  content <- query(url, "rchanges", clean_response, query_param = query_param, ...)
   
   #Return
   return(content)

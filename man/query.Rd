@@ -4,7 +4,7 @@
 \alias{query}
 \title{base query function}
 \usage{
-query(url, out_class, clean_response = FALSE, ...)
+query(url, out_class, clean_response = FALSE, query_param = list(), ...)
 }
 \arguments{
 \item{url}{a URL body}
@@ -14,6 +14,8 @@ WikidataR to indicate what response-cleaning method should be applied.}
 
 \item{clean_response}{whether to clean the response, using the method assigned
 by out_class, or not.}
+
+\item{query_param}{query parameters}
 
 \item{...}{further arguments to httr's GET.}
 }
