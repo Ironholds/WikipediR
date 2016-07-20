@@ -50,12 +50,12 @@ url_gen <- function(language, project, domain = NULL, ...){
   if(is.null(domain)){
     #Commons and Wikispecies have different URL formats, so those have to be handled in a hinky way.
     if(project %in% c("commons","species")){
-      url <- sprintf("http://%s.wikimedia.org/w/api.php", project)
+      url <- sprintf("https://%s.wikimedia.org/w/api.php", project)
     } else {
-      url <- sprintf("http://%s.%s.org/w/api.php", language, project)
+      url <- sprintf("https://%s.%s.org/w/api.php", language, project)
     }
   } else {
-    url <- sprintf("http://%s/w/api.php", domain)
+    url <- sprintf("https://%s/w/api.php", domain)
   }
   
   #Return
