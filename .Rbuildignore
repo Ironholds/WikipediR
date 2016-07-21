@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^\.git
 ^CONDUCT\.md$
+.travis.yml
