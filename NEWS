@@ -1,9 +1,10 @@
-Version 1.5.0 [WIP]
+Version 1.5.0
 ------------------------------------------------------------------------------
 
 BUG FIXES
 * https is now the default for requests (Thanks to Hiroaki Yutani)
 * UTF-8 page names and similar are properly handled (Thanks to Hiroaki Yutani)
+
 Version 1.4.0
 ------------------------------------------------------------------------------
 
