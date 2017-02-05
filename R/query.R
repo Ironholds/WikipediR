@@ -55,7 +55,7 @@ url_gen <- function(language, project, domain = NULL, ...){
       url <- sprintf("https://%s.%s.org/w/api.php", language, project)
     }
   } else {
-    url <- sprintf("https://%s/w/api.php", domain)
+    url <- sprintf("http://%s/w/api.php", domain)
   }
   
   #Return
