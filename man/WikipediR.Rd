@@ -8,7 +8,7 @@
 \description{
 This package provides functions for accessing the MediaWiki API, either for
 Wikimedia projects or any other MediaWiki instance. For more information, see the
-\href{https://cran.r-project.org/web/packages/WikipediR/vignettes/WikipediR.html}{vignette}.
+\href{https://CRAN.R-project.org/package=WikipediR/vignettes/WikipediR.html}{vignette}.
 }
 \seealso{
 The \href{https://CRAN.R-project.org/package=WikipediR/vignettes/WikipediR.html}{package vignette}.
