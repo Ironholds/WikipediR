@@ -1,7 +1,6 @@
 #' request token to start client login
 #'
-#' helper function to request a user login token within 
-#' \code{client\_login}
+#' helper function to request a user login token 
 #' 
 #' @param url a URL body
 #' @param user a username of a registered user
@@ -26,7 +25,7 @@ get_prelogin_token <- function(url, user) {
   
   # parse the response, check for API errors
   parsed_response <- response_parse(
-    response = response, out_class = "token"
+    response = response, out_class = "prelogintoken"
   )
   if(!is.null(parsed_response$error)){
     stop(
@@ -76,6 +75,7 @@ login <- function(url, user, pw){
         logintoken = token,
         password = pw
     )
+  ) %>% httr::stop_for_status(
   )
   
   # parse the response, check for API errors

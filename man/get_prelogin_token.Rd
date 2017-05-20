@@ -15,6 +15,5 @@ get_prelogin_token(url, user)
 a token string
 }
 \description{
-helper function to request a user login token within 
-\code{client\_login}
+helper function to request a user login token
 }
