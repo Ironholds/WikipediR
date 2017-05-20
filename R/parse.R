@@ -85,3 +85,13 @@ parse_response.pageinfo <- function(x){
   })
   return(results)
 }
+
+parse_response.token <- function(x){
+  x <- x$login$token
+  return(x)
+}
+
+parse_response.login <- function(x){
+  x <- x$clientlogin$status == "PASS"
+  return(x)
+}

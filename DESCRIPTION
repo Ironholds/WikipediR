@@ -12,7 +12,8 @@ Description: A wrapper for the MediaWiki API, aimed particularly at the
 License: MIT + file LICENSE
 Imports:
     httr,
-    jsonlite
+    jsonlite,
+    magrittr
 Suggests:
     testthat,
     knitr,
