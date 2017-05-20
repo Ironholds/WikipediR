@@ -41,4 +41,3 @@ external_links <- page_external_links("en","wikipedia", page = "Aaron Halfaker")
 external_http_links <- page_external_links("en","wikipedia",
                                           page = "Aaron Halfaker", protocol = "http")
 }
-

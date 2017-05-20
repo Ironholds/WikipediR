@@ -50,6 +50,7 @@ in a specified category (or series of specified categories)
 Because of the way MediaWiki stores this data, both "the category you asked for doesn't exist"
 and "the category you asked for exists, but has no members" return in the same way.
 }
+
 \examples{
 
 #Retrieve the pages in the "New Age" category on en.wiki
@@ -61,4 +62,3 @@ rw_cats <- pages_in_category(domain = "rationalwiki.org", categories = "New Age"
 \seealso{
 \code{\link{categories_in_page}} for finding categories that a specified page is a member of.
 }
-

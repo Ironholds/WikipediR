@@ -53,4 +53,3 @@ rw_content <- revision_content(domain = "rationalwiki.org", revisions = 88616)
 \code{\link{revision_diff}} for diffs between revisions,
 and \code{\link{page_content}} for the content a specific page currently has.
 }
-

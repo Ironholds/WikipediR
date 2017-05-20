@@ -45,6 +45,7 @@ page. Output can be filtered to specific namespaces.
 you are linking to does not exist, an empty list will be returned, without
 any indication of an error.
 }
+
 \examples{
 #Backlink
 all_bls <- page_backlinks("en","wikipedia", page = "Aaron Halfaker")
@@ -52,4 +53,3 @@ all_bls <- page_backlinks("en","wikipedia", page = "Aaron Halfaker")
 #Namespace-specific backlinks
 mainspace_bls <- page_backlinks("en","wikipedia", page = "Aaron Halfaker", namespaces = 0)
 }
-

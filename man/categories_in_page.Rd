@@ -53,4 +53,3 @@ rw_cats <- categories_in_page(domain = "rationalwiki.org", pages = "New Age")
 \seealso{
 \code{\link{pages_in_category}} for pages in a specified category.
 }
-

@@ -56,6 +56,7 @@ If you're going to be asking for a lot of diffs, some of which may not be cached
 sensible to retrieve the revisions themselves using \code{\link{revision_content}} and compute the
 diffs yourself.
 }
+
 \examples{
 
 #Wikimedia diff
@@ -68,4 +69,3 @@ rw_diff <- revision_diff(domain = "rationalwiki.org", revisions = 88616, directi
 \code{\link{page_content}} for retrieving the current content of a specific page, and
 \code{\link{revision_content}} for retrieving the text of specific revisions.
 }
-
