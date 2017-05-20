@@ -11,7 +11,7 @@ login(url, user, pw)
 
 \item{user}{a username of a registered user}
 
-\item{user}{the password of said user}
+\item{pw}{the password of said user}
 }
 \value{
 TRUE

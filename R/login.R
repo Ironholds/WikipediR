@@ -50,7 +50,7 @@ get_prelogin_token <- function(url, user) {
 #' 
 #' @param url a URL body
 #' @param user a username of a registered user
-#' @param user the password of said user
+#' @param pw the password of said user
 #' 
 #' @return TRUE
 #'
