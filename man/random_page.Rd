@@ -50,4 +50,3 @@ wp_article_content <- random_page("en","wikipedia", namespaces = 0)
 \code{\link{revision_diff}} for retrieving 'diffs' between revisions,
 \code{\link{revision_content}} for retrieving the text of specified revisions.
 }
-

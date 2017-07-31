@@ -49,4 +49,3 @@ rw_content <- page_content(domain = "rationalwiki.org", page_name = "New Age")
 \code{\link{revision_diff}} for retrieving 'diffs' between revisions,
 \code{\link{revision_content}} for retrieving the text of specified revisions.
 }
-

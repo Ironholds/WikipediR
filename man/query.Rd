@@ -23,4 +23,3 @@ by out_class, or not.}
 not designed to be used by anyone except
 a third-party reuser package, such as WikidataR
 }
-

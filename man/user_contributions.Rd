@@ -62,4 +62,3 @@ rw_contribs <- user_contributions(domain = "rationalwiki.org", username = "David
 \code{\link{user_information}} for information about a specific user (or group of users),
 and \code{recent_changes} for non-user-specific recent actions.
 }
-

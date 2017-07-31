@@ -58,4 +58,3 @@ Set to FALSE by default.}
 wiki_recentchanges retrieves a stream of entries from Special:RecentChanges, with a variety of
 associated metadata and filtering (of both entries *and* that metadata.
 }
-

@@ -3,7 +3,7 @@ Type: Package
 Title: A MediaWiki API Wrapper
 Version: 1.5.0
 Date: 2017-02-04
-Author: Oliver Keyes [aut, cre], Brock Tilbert [ctb]
+Author: Oliver Keyes [aut, cre], Brock Tilbert [ctb], Clemens Schmid [aut]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: A wrapper for the MediaWiki API, aimed particularly at the
     Wikimedia 'production' wikis, such as Wikipedia. It can be used to retrieve
@@ -12,7 +12,8 @@ Description: A wrapper for the MediaWiki API, aimed particularly at the
 License: MIT + file LICENSE
 Imports:
     httr,
-    jsonlite
+    jsonlite,
+    magrittr
 Suggests:
     testthat,
     knitr,
@@ -21,4 +22,4 @@ Suggests:
 BugReports: https://github.com/Ironholds/WikipediR/issues
 URL: https://github.com/Ironholds/WikipediR/
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

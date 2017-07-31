@@ -61,6 +61,7 @@ the \code{registration} value represents not when they first registered, but whe
 edit was, since that was used as an estimator for existing accounts when the field was first
 populated.
 }
+
 \examples{
 #Retrieving information from a Wikimedia project
 user_info <- user_information("en", "wikipedia", user_names = "David Gerard",
@@ -74,4 +75,3 @@ user_info <- user_information(domain = "rationalwiki.org", user_names = "David G
 \code{\link{user_contributions}} for retrieving recent contributions made by
 a particular user.
 }
-

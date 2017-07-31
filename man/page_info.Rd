@@ -40,4 +40,3 @@ page_info, when provided with a page title, retrieves metadata about that page.
 page_metadata <- page_info("en","wikipedia", page = "Aaron Halfaker")
 
 }
-

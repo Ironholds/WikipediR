@@ -4,6 +4,7 @@
 \name{WikipediR}
 \alias{WikipediR}
 \alias{WikipediR-package}
+\alias{WikipediR-package}
 \title{A client library for MediaWiki's API}
 \description{
 This package provides functions for accessing the MediaWiki API, either for
@@ -13,4 +14,3 @@ Wikimedia projects or any other MediaWiki instance. For more information, see th
 \seealso{
 The \href{https://CRAN.R-project.org/package=WikipediR/vignettes/WikipediR.html}{package vignette}.
 }
-
