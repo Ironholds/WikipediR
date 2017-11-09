@@ -1,8 +1,8 @@
 Package: WikipediR
 Type: Package
 Title: A MediaWiki API Wrapper
-Version: 1.5.0
-Date: 2017-02-04
+Version: 1.6.0
+Date: 2017-11-06
 Author: Oliver Keyes [aut, cre], Brock Tilbert [ctb], Clemens Schmid [aut]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: A wrapper for the MediaWiki API, aimed particularly at the

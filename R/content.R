@@ -134,7 +134,7 @@ page_content <- function(language = NULL, project = NULL, domain = NULL,
     prop   = properties
   )
   if(!is.null(page_id)){
-    query_param$page_id <- handle_limits(page_id, 1)
+    query_param$pageid <- handle_limits(page_id, 1)
   } else {
     query_param$page <- handle_limits(page_name, 1)
   }

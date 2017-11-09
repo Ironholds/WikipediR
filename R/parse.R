@@ -6,9 +6,15 @@ parse_response.rchanges <- function(x){
   x <- x$query$recentchanges
   return(x)
 }
+
 parse_response.rcontent <- function(x){
   x <- x$query$pages
   names(x) <- NULL
+  return(x)
+}
+
+parse_response.pcontent <- function(x){
+  x <- x$parse
   return(x)
 }
 
