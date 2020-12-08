@@ -4,8 +4,16 @@
 \alias{page_content}
 \title{Retrieves MediaWiki page content}
 \usage{
-page_content(language = NULL, project = NULL, domain = NULL, page_name,
-  page_id = NULL, as_wikitext = FALSE, clean_response = FALSE, ...)
+page_content(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  page_name,
+  page_id = NULL,
+  as_wikitext = FALSE,
+  clean_response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,

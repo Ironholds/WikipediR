@@ -4,7 +4,6 @@
 \name{WikipediR}
 \alias{WikipediR}
 \alias{WikipediR-package}
-\alias{WikipediR-package}
 \title{A client library for MediaWiki's API}
 \description{
 This package provides functions for accessing the MediaWiki API, either for

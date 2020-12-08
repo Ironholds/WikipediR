@@ -22,4 +22,4 @@ Suggests:
 BugReports: https://github.com/Ironholds/WikipediR/issues
 URL: https://github.com/Ironholds/WikipediR/
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1
