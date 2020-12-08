@@ -4,9 +4,17 @@
 \alias{categories_in_page}
 \title{Retrieves categories associated with a page.}
 \usage{
-categories_in_page(language = NULL, project = NULL, domain = NULL, pages,
-  properties = c("sortkey", "timestamp", "hidden"), limit = 50,
-  show_hidden = FALSE, clean_response = FALSE, ...)
+categories_in_page(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  pages,
+  properties = c("sortkey", "timestamp", "hidden"),
+  limit = 50,
+  show_hidden = FALSE,
+  clean_response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,

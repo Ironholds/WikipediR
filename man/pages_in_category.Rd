@@ -4,10 +4,18 @@
 \alias{pages_in_category}
 \title{Retrieves a list of category members.}
 \usage{
-pages_in_category(language = NULL, project = NULL, domain = NULL,
-  categories, properties = c("title", "ids", "sortkey", "sortkeyprefix",
-  "type", "timestamp"), type = c("page", "subcat", "file"),
-  clean_response = FALSE, limit = 50, ...)
+pages_in_category(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  categories,
+  properties = c("title", "ids", "sortkey", "sortkeyprefix", "type", "timestamp"),
+  type = c("page", "subcat", "file"),
+  clean_response = FALSE,
+  limit = 50,
+  extra_query = list(),
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
@@ -38,6 +46,8 @@ Set to FALSE by default.}
 
 \item{limit}{The maximum number of members to retrieve for each category. Set
 to 50 by default.}
+
+\item{extra_query}{The list of additional parameters (optional).}
 
 \item{...}{further arguments to pass to httr's GET().}
 }

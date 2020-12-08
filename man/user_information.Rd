@@ -4,10 +4,16 @@
 \alias{user_information}
 \title{Retrieve user information}
 \usage{
-user_information(language = NULL, project = NULL, domain = NULL,
-  user_names, properties = c("blockinfo", "groups", "implicitgroups",
-  "rights", "editcount", "registration", "emailable", "gender"),
-  clean_response = FALSE, ...)
+user_information(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  user_names,
+  properties = c("blockinfo", "groups", "implicitgroups", "rights", "editcount",
+    "registration", "emailable", "gender"),
+  clean_response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
