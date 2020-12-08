@@ -66,7 +66,7 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
     cllimit= limit,
     titles = pages
   )
-  
+    
   #Retrieve, check, return
   content <- query(url, "pagecats", clean_response, query_param = query_param, ...)
   page_names <- names(unlist(content))
@@ -113,6 +113,8 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
 #'@param limit The maximum number of members to retrieve for each category. Set
 #'to 50 by default.
 #'
+#'@param extra_query The list of additional parameters (optional).
+#'
 #'@param ... further arguments to pass to httr's GET().
 #'
 #'@section warnings:
@@ -132,6 +134,7 @@ categories_in_page <- function(language = NULL, project = NULL, domain = NULL,
 pages_in_category <- function(language = NULL, project = NULL, domain = NULL, categories,
                               properties = c("title","ids","sortkey","sortkeyprefix","type","timestamp"),
                               type = c("page","subcat","file"), clean_response = FALSE, limit = 50,
+                              extra_query = list(),
                               ...){
   
   #Format and check
@@ -153,6 +156,9 @@ pages_in_category <- function(language = NULL, project = NULL, domain = NULL, ca
     cmlimit = limit
   )
   
+  # Add user-defined query
+  query_param <- c(query_param, extra_query)
+
   #Query and return
   content <- query(url, "catpages", clean_response, query_param = query_param, ...)
   return(content)
