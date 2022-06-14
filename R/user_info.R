@@ -46,7 +46,7 @@ missing_users <- function(parsed_response){
 #'@param clean_response whether to do some basic sanitising of the resulting data structure.
 #'Set to FALSE by default.
 #'
-#'@param continue wether to continue to next batch of responses. If so, add "continue token" as parameter
+#'@param continue When more results are available, use this to continue as input parameter for next request.
 #'
 #'@param ... further arguments to pass to httr's GET.
 #'
@@ -62,6 +62,12 @@ missing_users <- function(parsed_response){
 #'#Retrieve the timestamps of a user's recent contributions to a non-Wikimedia wiki.
 #'rw_contribs <- user_contributions(domain = "rationalwiki.org", username = "David Gerard",
 #'                                  properties = "ids", limit = 1)
+#' 
+#' #Retrieve data with continue parameter
+#' batch_1 <- user_contributions(domain = "rationalwiki.org", username = "David Gerard", 
+#' properties = "ids", limit = 1)
+#' batch_2 <- user_contributions(domain = "rationalwiki.org", username = "David Gerard", 
+#' properties = "ids", limit = 1, continue = batch_1[["continue"]][["uccontinue"]])
 #'                            
 #'@export
 user_contributions <- function(language = NULL, project = NULL, domain = NULL,
