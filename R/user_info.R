@@ -46,6 +46,8 @@ missing_users <- function(parsed_response){
 #'@param clean_response whether to do some basic sanitising of the resulting data structure.
 #'Set to FALSE by default.
 #'
+#'@param continue wether to continue to next batch of responses. If so, add "continue token" as parameter
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso \code{\link{user_information}} for information about a specific user (or group of users),
@@ -67,6 +69,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
                                                         "comment", "parsedcomment", "size", 
                                                         "sizediff", "flags", "tags"),
                                mainspace = FALSE, limit = 50, clean_response = FALSE,
+                               continue = NULL,
                                ...){
   
   #Perform checks, construct URL
@@ -74,6 +77,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
   properties <- paste(properties, collapse = "|")
   username <- handle_limits(username, 1)
   url <- url_gen(language, project, domain)
+  
   query_param <- list(
     action  = "query",
     list    = "usercontribs",
@@ -81,6 +85,10 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
     ucuser  = username,
     ucprop  = properties
   )
+  
+  if (!is.null(continue)) {
+    query_param <- append(query_param, list(uccontinue = continue))
+  }
   
   #If only article contributions are desired, note that.
   if(mainspace){
