@@ -4,10 +4,17 @@
 \alias{pages_in_category}
 \title{Retrieves a list of category members.}
 \usage{
-pages_in_category(language = NULL, project = NULL, domain = NULL,
-  categories, properties = c("title", "ids", "sortkey", "sortkeyprefix",
-  "type", "timestamp"), type = c("page", "subcat", "file"),
-  clean_response = FALSE, limit = 50, ...)
+pages_in_category(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  categories,
+  properties = c("title", "ids", "sortkey", "sortkeyprefix", "type", "timestamp"),
+  type = c("page", "subcat", "file"),
+  clean_response = FALSE,
+  limit = 50,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,

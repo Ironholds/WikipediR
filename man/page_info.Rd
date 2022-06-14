@@ -4,9 +4,15 @@
 \alias{page_info}
 \title{Retrieve information about a particular page}
 \usage{
-page_info(language = NULL, project = NULL, domain = NULL, page,
+page_info(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  page,
   properties = c("protection", "talkid", "url", "displaytitle"),
-  clean_response = FALSE, ...)
+  clean_response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,

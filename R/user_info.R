@@ -46,6 +46,8 @@ missing_users <- function(parsed_response){
 #'@param clean_response whether to do some basic sanitising of the resulting data structure.
 #'Set to FALSE by default.
 #'
+#'@param continue When more results are available, use this to continue as input parameter for next request.
+#'
 #'@param ... further arguments to pass to httr's GET.
 #'
 #'@seealso \code{\link{user_information}} for information about a specific user (or group of users),
@@ -60,6 +62,12 @@ missing_users <- function(parsed_response){
 #'#Retrieve the timestamps of a user's recent contributions to a non-Wikimedia wiki.
 #'rw_contribs <- user_contributions(domain = "rationalwiki.org", username = "David Gerard",
 #'                                  properties = "ids", limit = 1)
+#' 
+#' #Retrieve data with continue parameter
+#' batch_1 <- user_contributions(domain = "rationalwiki.org", username = "David Gerard", 
+#' properties = "ids", limit = 1)
+#' batch_2 <- user_contributions(domain = "rationalwiki.org", username = "David Gerard", 
+#' properties = "ids", limit = 1, continue = batch_1[["continue"]][["uccontinue"]])
 #'                            
 #'@export
 user_contributions <- function(language = NULL, project = NULL, domain = NULL,
@@ -67,6 +75,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
                                                         "comment", "parsedcomment", "size", 
                                                         "sizediff", "flags", "tags"),
                                mainspace = FALSE, limit = 50, clean_response = FALSE,
+                               continue = NULL,
                                ...){
   
   #Perform checks, construct URL
@@ -74,6 +83,7 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
   properties <- paste(properties, collapse = "|")
   username <- handle_limits(username, 1)
   url <- url_gen(language, project, domain)
+  
   query_param <- list(
     action  = "query",
     list    = "usercontribs",
@@ -81,6 +91,10 @@ user_contributions <- function(language = NULL, project = NULL, domain = NULL,
     ucuser  = username,
     ucprop  = properties
   )
+  
+  if (!is.null(continue)) {
+    query_param <- append(query_param, list(uccontinue = continue))
+  }
   
   #If only article contributions are desired, note that.
   if(mainspace){
