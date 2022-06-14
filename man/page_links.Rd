@@ -4,9 +4,17 @@
 \alias{page_links}
 \title{Retrieve a page's links}
 \usage{
-page_links(language = NULL, project = NULL, domain = NULL, page,
-  limit = 50, direction = "ascending", namespaces = NULL,
-  clean_response = FALSE, ...)
+page_links(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  page,
+  limit = 50,
+  direction = "ascending",
+  namespaces = NULL,
+  clean_response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,

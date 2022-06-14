@@ -4,10 +4,17 @@
 \alias{revision_diff}
 \title{Generates a "diff" between a pair of revisions}
 \usage{
-revision_diff(language = NULL, project = NULL, domain = NULL, revisions,
-  properties = c("ids", "flags", "timestamp", "user", "userid", "size",
-  "sha1", "contentmodel", "comment", "parsedcomment", "tags", "flagged"),
-  direction, clean_response = FALSE, ...)
+revision_diff(
+  language = NULL,
+  project = NULL,
+  domain = NULL,
+  revisions,
+  properties = c("ids", "flags", "timestamp", "user", "userid", "size", "sha1",
+    "contentmodel", "comment", "parsedcomment", "tags", "flagged"),
+  direction,
+  clean_response = FALSE,
+  ...
+)
 }
 \arguments{
 \item{language}{The language code of the project you wish to query,
